@@ -71,10 +71,14 @@ export default function VehicleDetailsPage({
   const [note, setNote] = useState("")
   const [submitting, setSubmitting] = useState(false)
   const [transactionError, setTransactionError] = useState("")
-  const [editingTransactionId, setEditingTransactionId] = useState<number | null>(null)
-  const [deletingTransactionId, setDeletingTransactionId] = useState<number | null>(null)
-  const [deletingTransaction, setDeletingTransaction] = useState(false)
-  const [transactionActionError, setTransactionActionError] = useState("")
+  const [editingTransactionId, setEditingTransactionId] =
+    useState<number | null>(null)
+  const [deletingTransactionId, setDeletingTransactionId] =
+    useState<number | null>(null)
+  const [deletingTransaction, setDeletingTransaction] =
+    useState(false)
+  const [transactionActionError, setTransactionActionError] =
+    useState("")
   const [alert, setAlert] = useState<{
     type: "success" | "error"
     title: string
@@ -296,7 +300,8 @@ export default function VehicleDetailsPage({
       setAlert({
         type: "success",
         title: "Lorry updated",
-        message: "The lorry details have been updated successfully.",
+        message:
+          "The lorry details have been updated successfully.",
       })
     } catch (error) {
       console.error(error)
@@ -315,6 +320,7 @@ export default function VehicleDetailsPage({
 
   const confirmArchiveVehicle = () => {
     if (!vehicle || archiving) return
+
     setAlert({
       type: "error",
       title: "Archive lorry?",
@@ -387,7 +393,9 @@ export default function VehicleDetailsPage({
     setShowTransactionForm(true)
   }
 
-  const openEditTransactionForm = (transaction: Transaction) => {
+  const openEditTransactionForm = (
+    transaction: Transaction
+  ) => {
     setEditingTransactionId(transaction.id)
     setTransactionType(transaction.type)
     setAmount(transaction.amount)
@@ -399,6 +407,7 @@ export default function VehicleDetailsPage({
 
   const closeTransactionForm = () => {
     if (submitting) return
+
     setShowTransactionForm(false)
     setEditingTransactionId(null)
     setTransactionError("")
@@ -431,7 +440,9 @@ export default function VehicleDetailsPage({
     }
 
     if (!vehicle) {
-      setTransactionError("Vehicle information is unavailable.")
+      setTransactionError(
+        "Vehicle information is unavailable."
+      )
       return
     }
 
@@ -461,7 +472,12 @@ export default function VehicleDetailsPage({
 
       if (!response.ok) {
         const errorData = await response.text()
-        console.error("Transaction save error:", errorData)
+
+        console.error(
+          "Transaction save error:",
+          errorData
+        )
+
         throw new Error(
           isEditing
             ? "Failed to update transaction"
@@ -485,13 +501,18 @@ export default function VehicleDetailsPage({
 
       setAlert({
         type: "success",
-        title: isEditing ? "Transaction updated" : "Transaction added",
-        message: isEditing
-          ? "The transaction has been updated successfully."
-          : "The transaction has been added successfully.",
+        title:
+          isEditing
+            ? "Transaction updated"
+            : "Transaction added",
+        message:
+          isEditing
+            ? "The transaction has been updated successfully."
+            : "The transaction has been added successfully.",
       })
     } catch (error) {
       console.error(error)
+
       setTransactionError(
         editingTransactionId !== null
           ? "Unable to update transaction. Please try again."
@@ -502,13 +523,16 @@ export default function VehicleDetailsPage({
     }
   }
 
-  const requestDeleteTransaction = (transaction: Transaction) => {
+  const requestDeleteTransaction = (
+    transaction: Transaction
+  ) => {
     setDeletingTransactionId(transaction.id)
     setTransactionActionError("")
   }
 
   const cancelDeleteTransaction = () => {
     if (deletingTransaction) return
+
     setDeletingTransactionId(null)
     setTransactionActionError("")
   }
@@ -519,7 +543,9 @@ export default function VehicleDetailsPage({
     const token = localStorage.getItem("token")
 
     if (!token) {
-      setTransactionActionError("You are not authenticated.")
+      setTransactionActionError(
+        "You are not authenticated."
+      )
       return
     }
 
@@ -540,13 +566,21 @@ export default function VehicleDetailsPage({
 
       if (!response.ok) {
         const errorData = await response.text()
-        console.error("Transaction delete error:", errorData)
-        throw new Error("Failed to delete transaction")
+
+        console.error(
+          "Transaction delete error:",
+          errorData
+        )
+
+        throw new Error(
+          "Failed to delete transaction"
+        )
       }
 
       setTransactions((currentTransactions) =>
         currentTransactions.filter(
-          (transaction) => transaction.id !== deletingTransactionId
+          (transaction) =>
+            transaction.id !== deletingTransactionId
         )
       )
 
@@ -555,10 +589,12 @@ export default function VehicleDetailsPage({
       setAlert({
         type: "success",
         title: "Transaction deleted",
-        message: "The transaction has been removed from this lorry.",
+        message:
+          "The transaction has been removed from this lorry.",
       })
     } catch (error) {
       console.error(error)
+
       setTransactionActionError(
         "Unable to delete transaction. Please try again."
       )
@@ -624,11 +660,11 @@ export default function VehicleDetailsPage({
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-6 text-white">
-        <div className="flex items-center gap-3 text-zinc-400">
+      <main className="flex min-h-screen items-center justify-center bg-[#F5F6F8] px-6 text-[#25282D]">
+        <div className="flex items-center gap-3 text-[#737780]">
           <Loader2
             size={20}
-            className="animate-spin"
+            className="animate-spin text-[#EF4B4B]"
           />
           Loading vehicle...
         </div>
@@ -642,15 +678,15 @@ export default function VehicleDetailsPage({
 
   if (error || !vehicle) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-6 text-white">
+      <main className="flex min-h-screen items-center justify-center bg-[#F5F6F8] px-6 text-[#25282D]">
         <div className="text-center">
-          <p className="text-rose-400">
+          <p className="text-rose-600">
             {error || "Vehicle not found."}
           </p>
 
           <Link
             href="/dashboard"
-            className="mt-4 inline-flex items-center gap-2 text-sm text-[#D98A3D] transition hover:text-[#E8A85C]"
+            className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#EF4B4B] transition hover:text-[#D93B3B]"
           >
             <ArrowLeft size={16} />
             Back to Fleet
@@ -661,16 +697,16 @@ export default function VehicleDetailsPage({
   }
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-zinc-950 text-white">
+    <main className="min-h-screen overflow-x-hidden bg-[#F5F6F8] text-[#25282D]">
       {/* --------------------------------------------------
           HEADER
       -------------------------------------------------- */}
 
-      <header className="border-b border-zinc-800 bg-zinc-950">
+      <header className="border-b border-[#E8E9ED] bg-white">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-5">
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white"
+            className="inline-flex items-center gap-2 text-sm text-[#737780] transition hover:text-[#25282D]"
           >
             <ArrowLeft size={18} />
             Back to Fleet
@@ -688,7 +724,7 @@ export default function VehicleDetailsPage({
             {/* Vehicle identity */}
 
             <div className="flex min-w-0 items-center gap-3 sm:gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#C6752B] sm:h-14 sm:w-14">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EF4B4B] text-white sm:h-14 sm:w-14">
                 <Truck
                   size={25}
                   className="sm:hidden"
@@ -701,11 +737,11 @@ export default function VehicleDetailsPage({
               </div>
 
               <div className="min-w-0">
-                <h1 className="truncate text-2xl font-bold sm:text-3xl">
+                <h1 className="truncate text-2xl font-bold text-[#25282D] sm:text-3xl">
                   {vehicle.registration_number}
                 </h1>
 
-                <p className="mt-1 truncate text-sm text-zinc-400 sm:text-base">
+                <p className="mt-1 truncate text-sm text-[#737780] sm:text-base">
                   {vehicle.driver_name}
                 </p>
               </div>
@@ -716,7 +752,7 @@ export default function VehicleDetailsPage({
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
               {/* Status */}
 
-              <span className="inline-flex w-fit items-center rounded-full border border-[#C6752B]/20 bg-[#C6752B]/10 px-3 py-1.5 text-xs font-medium text-[#D98A3D] sm:px-4 sm:py-2 sm:text-sm">
+              <span className="inline-flex w-fit items-center rounded-full border border-[#EF4B4B]/20 bg-[#EF4B4B]/10 px-3 py-1.5 text-xs font-medium text-[#EF4B4B] sm:px-4 sm:py-2 sm:text-sm">
                 {formatStatus(vehicle.status)}
               </span>
 
@@ -726,7 +762,7 @@ export default function VehicleDetailsPage({
                 <button
                   type="button"
                   onClick={openEditForm}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-zinc-700 px-3 py-2.5 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white sm:flex-none sm:px-4"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-[#E8E9ED] bg-white px-3 py-2.5 text-sm font-semibold text-[#737780] transition hover:border-[#EF4B4B]/30 hover:bg-[#EF4B4B]/5 hover:text-[#25282D] sm:flex-none sm:px-4"
                 >
                   <Pencil size={16} />
                   <span>Edit Lorry</span>
@@ -736,7 +772,7 @@ export default function VehicleDetailsPage({
                   type="button"
                   onClick={confirmArchiveVehicle}
                   disabled={archiving}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-rose-500/20 bg-rose-500/10 px-3 py-2.5 text-sm font-semibold text-rose-400 transition hover:bg-rose-500/20 disabled:cursor-not-allowed disabled:opacity-50 sm:flex-none sm:px-4"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2.5 text-sm font-semibold text-rose-600 transition hover:bg-rose-100 disabled:cursor-not-allowed disabled:opacity-50 sm:flex-none sm:px-4"
                 >
                   {archiving ? (
                     <Loader2
@@ -763,7 +799,7 @@ export default function VehicleDetailsPage({
         -------------------------------------------------- */}
 
         {archiveError && (
-          <div className="mb-6 rounded-lg border border-rose-500/20 bg-rose-500/10 p-4 text-sm text-rose-400">
+          <div className="mb-6 rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-600">
             {archiveError}
           </div>
         )}
@@ -773,16 +809,15 @@ export default function VehicleDetailsPage({
         -------------------------------------------------- */}
 
         {showEditForm && (
-          <div className="mb-8 rounded-xl border border-zinc-800 bg-zinc-900 p-4 sm:p-6">
+          <div className="mb-8 rounded-xl border border-[#E8E9ED] bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-6 flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-xl font-semibold">
+                <h2 className="text-xl font-semibold text-[#25282D]">
                   Edit Lorry
                 </h2>
 
-                <p className="mt-1 text-sm text-zinc-500">
-                  Update the current operational
-                  details of this lorry.
+                <p className="mt-1 text-sm text-[#737780]">
+                  Update the current operational details of this lorry.
                 </p>
               </div>
 
@@ -790,7 +825,7 @@ export default function VehicleDetailsPage({
                 type="button"
                 onClick={closeEditForm}
                 disabled={updatingVehicle}
-                className="shrink-0 rounded-lg p-2 text-zinc-400 transition hover:bg-zinc-800 hover:text-white"
+                className="shrink-0 rounded-lg p-2 text-[#737780] transition hover:bg-[#F5F6F8] hover:text-[#25282D]"
               >
                 <X size={20} />
               </button>
@@ -801,29 +836,26 @@ export default function VehicleDetailsPage({
                 {/* Registration */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Registration Number
                   </label>
 
                   <input
                     type="text"
-                    value={
-                      vehicle.registration_number
-                    }
+                    value={vehicle.registration_number}
                     disabled
-                    className="mt-2 w-full cursor-not-allowed rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3 text-sm text-zinc-500"
+                    className="mt-2 w-full cursor-not-allowed rounded-lg border border-[#E8E9ED] bg-[#F5F6F8] px-4 py-3 text-sm text-[#A0A3AA]"
                   />
 
-                  <p className="mt-1 text-xs text-zinc-600">
-                    Registration number cannot be
-                    changed.
+                  <p className="mt-1 text-xs text-[#A0A3AA]">
+                    Registration number cannot be changed.
                   </p>
                 </div>
 
                 {/* Cargo */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Cargo Type
                   </label>
 
@@ -831,10 +863,10 @@ export default function VehicleDetailsPage({
                     type="text"
                     value={vehicle.cargo_type}
                     disabled
-                    className="mt-2 w-full cursor-not-allowed rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 text-sm text-zinc-500"
+                    className="mt-2 w-full cursor-not-allowed rounded-lg border border-[#E8E9ED] bg-[#F5F6F8] px-4 py-3 text-sm text-[#A0A3AA]"
                   />
 
-                  <p className="mt-1 text-xs text-zinc-600">
+                  <p className="mt-1 text-xs text-[#A0A3AA]">
                     Cargo type cannot be changed here.
                   </p>
                 </div>
@@ -842,7 +874,7 @@ export default function VehicleDetailsPage({
                 {/* Driver */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Driver
                   </label>
 
@@ -850,19 +882,17 @@ export default function VehicleDetailsPage({
                     type="text"
                     value={editDriverName}
                     onChange={(event) =>
-                      setEditDriverName(
-                        event.target.value
-                      )
+                      setEditDriverName(event.target.value)
                     }
                     placeholder="Driver name"
-                    className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B]"
+                    className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
 
                 {/* Destination */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Destination
                   </label>
 
@@ -870,19 +900,17 @@ export default function VehicleDetailsPage({
                     type="text"
                     value={editDestination}
                     onChange={(event) =>
-                      setEditDestination(
-                        event.target.value
-                      )
+                      setEditDestination(event.target.value)
                     }
                     placeholder="Destination"
-                    className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B]"
+                    className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
 
                 {/* Current Location */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Current Location
                   </label>
 
@@ -890,19 +918,17 @@ export default function VehicleDetailsPage({
                     type="text"
                     value={editCurrentLocation}
                     onChange={(event) =>
-                      setEditCurrentLocation(
-                        event.target.value
-                      )
+                      setEditCurrentLocation(event.target.value)
                     }
                     placeholder="Current location"
-                    className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B]"
+                    className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
 
                 {/* Fuel */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Fuel Level (%)
                   </label>
 
@@ -913,19 +939,17 @@ export default function VehicleDetailsPage({
                     step="0.01"
                     value={editFuelLevel}
                     onChange={(event) =>
-                      setEditFuelLevel(
-                        event.target.value
-                      )
+                      setEditFuelLevel(event.target.value)
                     }
                     placeholder="e.g. 75"
-                    className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B]"
+                    className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
 
                 {/* Mileage */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Mileage (km)
                   </label>
 
@@ -935,18 +959,16 @@ export default function VehicleDetailsPage({
                     step="0.01"
                     value={editMileage}
                     onChange={(event) =>
-                      setEditMileage(
-                        event.target.value
-                      )
+                      setEditMileage(event.target.value)
                     }
                     placeholder="e.g. 125000"
-                    className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B]"
+                    className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
               </div>
 
               {vehicleUpdateError && (
-                <p className="mt-4 text-sm text-rose-400">
+                <p className="mt-4 text-sm text-rose-600">
                   {vehicleUpdateError}
                 </p>
               )}
@@ -956,7 +978,7 @@ export default function VehicleDetailsPage({
                   type="button"
                   onClick={closeEditForm}
                   disabled={updatingVehicle}
-                  className="rounded-lg border border-zinc-700 px-5 py-3 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white disabled:opacity-50"
+                  className="rounded-lg border border-[#E8E9ED] bg-white px-5 py-3 text-sm font-semibold text-[#737780] transition hover:bg-[#F5F6F8] hover:text-[#25282D] disabled:opacity-50"
                 >
                   Cancel
                 </button>
@@ -964,7 +986,7 @@ export default function VehicleDetailsPage({
                 <button
                   type="submit"
                   disabled={updatingVehicle}
-                  className="flex items-center justify-center gap-2 rounded-lg bg-[#C6752B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#A85F20] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex items-center justify-center gap-2 rounded-lg bg-[#EF4B4B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#D93B3B] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {updatingVehicle && (
                     <Loader2
@@ -987,25 +1009,23 @@ export default function VehicleDetailsPage({
         -------------------------------------------------- */}
 
         <div className="mb-8 grid gap-4 sm:gap-5 md:grid-cols-2">
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 sm:p-6">
-            <p className="text-sm text-zinc-400">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-5 shadow-sm sm:p-6">
+            <p className="text-sm text-[#737780]">
               Total income
             </p>
 
-            <p className="mt-2 text-2xl font-bold text-emerald-400 sm:text-3xl">
-              KES{" "}
-              {totalIncome.toLocaleString()}
+            <p className="mt-2 text-2xl font-bold text-emerald-600 sm:text-3xl">
+              KES {totalIncome.toLocaleString()}
             </p>
           </div>
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 sm:p-6">
-            <p className="text-sm text-zinc-400">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-5 shadow-sm sm:p-6">
+            <p className="text-sm text-[#737780]">
               Total expenses
             </p>
 
-            <p className="mt-2 text-2xl font-bold text-rose-400 sm:text-3xl">
-              KES{" "}
-              {totalExpenses.toLocaleString()}
+            <p className="mt-2 text-2xl font-bold text-rose-600 sm:text-3xl">
+              KES {totalExpenses.toLocaleString()}
             </p>
           </div>
         </div>
@@ -1014,8 +1034,8 @@ export default function VehicleDetailsPage({
             VEHICLE INFORMATION
         -------------------------------------------------- */}
 
-        <div className="mb-8 rounded-xl border border-zinc-800 bg-zinc-900 p-5 sm:p-6">
-          <h2 className="mb-6 text-xl font-semibold">
+        <div className="mb-8 rounded-xl border border-[#E8E9ED] bg-white p-5 shadow-sm sm:p-6">
+          <h2 className="mb-6 text-xl font-semibold text-[#25282D]">
             Vehicle Information
           </h2>
 
@@ -1025,15 +1045,15 @@ export default function VehicleDetailsPage({
             <div className="flex gap-3">
               <Truck
                 size={18}
-                className="mt-0.5 shrink-0 text-zinc-500"
+                className="mt-0.5 shrink-0 text-[#A0A3AA]"
               />
 
               <div className="min-w-0">
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-[#A0A3AA]">
                   Driver
                 </p>
 
-                <p className="mt-1 truncate text-sm font-medium">
+                <p className="mt-1 truncate text-sm font-medium text-[#25282D]">
                   {vehicle.driver_name}
                 </p>
               </div>
@@ -1044,15 +1064,15 @@ export default function VehicleDetailsPage({
             <div className="flex gap-3">
               <Package
                 size={18}
-                className="mt-0.5 shrink-0 text-zinc-500"
+                className="mt-0.5 shrink-0 text-[#A0A3AA]"
               />
 
               <div className="min-w-0">
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-[#A0A3AA]">
                   Cargo
                 </p>
 
-                <p className="mt-1 truncate text-sm font-medium">
+                <p className="mt-1 truncate text-sm font-medium text-[#25282D]">
                   {vehicle.cargo_type}
                 </p>
               </div>
@@ -1063,15 +1083,15 @@ export default function VehicleDetailsPage({
             <div className="flex gap-3">
               <MapPin
                 size={18}
-                className="mt-0.5 shrink-0 text-zinc-500"
+                className="mt-0.5 shrink-0 text-[#A0A3AA]"
               />
 
               <div className="min-w-0">
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-[#A0A3AA]">
                   Destination
                 </p>
 
-                <p className="mt-1 truncate text-sm font-medium">
+                <p className="mt-1 truncate text-sm font-medium text-[#25282D]">
                   {vehicle.destination}
                 </p>
               </div>
@@ -1082,15 +1102,15 @@ export default function VehicleDetailsPage({
             <div className="flex gap-3">
               <MapPin
                 size={18}
-                className="mt-0.5 shrink-0 text-zinc-500"
+                className="mt-0.5 shrink-0 text-[#A0A3AA]"
               />
 
               <div className="min-w-0">
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-[#A0A3AA]">
                   Current location
                 </p>
 
-                <p className="mt-1 truncate text-sm font-medium">
+                <p className="mt-1 truncate text-sm font-medium text-[#25282D]">
                   {vehicle.current_location}
                 </p>
               </div>
@@ -1101,15 +1121,15 @@ export default function VehicleDetailsPage({
             <div className="flex gap-3">
               <Fuel
                 size={18}
-                className="mt-0.5 shrink-0 text-zinc-500"
+                className="mt-0.5 shrink-0 text-[#A0A3AA]"
               />
 
               <div>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-[#A0A3AA]">
                   Fuel
                 </p>
 
-                <p className="mt-1 text-sm font-medium">
+                <p className="mt-1 text-sm font-medium text-[#25282D]">
                   {vehicle.fuel_level}%
                 </p>
               </div>
@@ -1118,11 +1138,11 @@ export default function VehicleDetailsPage({
             {/* Mileage */}
 
             <div>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-[#A0A3AA]">
                 Mileage
               </p>
 
-              <p className="mt-1 text-sm font-medium">
+              <p className="mt-1 text-sm font-medium text-[#25282D]">
                 {vehicle.mileage} km
               </p>
             </div>
@@ -1133,16 +1153,16 @@ export default function VehicleDetailsPage({
             TRANSACTIONS
         -------------------------------------------------- */}
 
-        <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
+        <div className="overflow-hidden rounded-xl border border-[#E8E9ED] bg-white shadow-sm">
           {/* Transaction Header */}
 
-          <div className="flex flex-col gap-4 border-b border-zinc-800 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div className="flex flex-col gap-4 border-b border-[#E8E9ED] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <div>
-              <h2 className="text-xl font-semibold">
+              <h2 className="text-xl font-semibold text-[#25282D]">
                 Transactions
               </h2>
 
-              <p className="mt-1 text-sm text-zinc-500">
+              <p className="mt-1 text-sm text-[#737780]">
                 Financial activity for this vehicle
               </p>
             </div>
@@ -1153,7 +1173,7 @@ export default function VehicleDetailsPage({
                   ? closeTransactionForm()
                   : openAddTransactionForm()
               }
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#C6752B] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#A85F20] sm:w-auto"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#EF4B4B] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#D93B3B] sm:w-auto"
             >
               <Plus size={17} />
 
@@ -1170,27 +1190,29 @@ export default function VehicleDetailsPage({
           {showTransactionForm && (
             <form
               onSubmit={handleSaveTransaction}
-              className="border-b border-zinc-800 p-5 sm:p-6"
+              className="border-b border-[#E8E9ED] p-5 sm:p-6"
             >
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <h3 className="text-base font-semibold text-white">
+                  <h3 className="text-base font-semibold text-[#25282D]">
                     {editingTransactionId !== null
                       ? "Edit Transaction"
                       : "Add Transaction"}
                   </h3>
-                  <p className="mt-1 text-sm text-zinc-500">
+
+                  <p className="mt-1 text-sm text-[#737780]">
                     {editingTransactionId !== null
                       ? "Update the transaction details below."
                       : "Record income or an expense for this lorry."}
                   </p>
                 </div>
+
                 {editingTransactionId !== null && (
                   <button
                     type="button"
                     onClick={closeTransactionForm}
                     disabled={submitting}
-                    className="rounded-lg p-2 text-zinc-500 transition hover:bg-zinc-800 hover:text-white"
+                    className="rounded-lg p-2 text-[#A0A3AA] transition hover:bg-[#F5F6F8] hover:text-[#25282D]"
                     aria-label="Close transaction form"
                   >
                     <X size={18} />
@@ -1202,7 +1224,7 @@ export default function VehicleDetailsPage({
                 {/* Type */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Transaction Type
                   </label>
 
@@ -1210,13 +1232,12 @@ export default function VehicleDetailsPage({
                     value={transactionType}
                     onChange={(event) =>
                       setTransactionType(
-                        event.target
-                          .value as
+                        event.target.value as
                           | "income"
                           | "expense"
                       )
                     }
-                    className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none focus:border-[#C6752B]"
+                    className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   >
                     <option value="income">
                       Income
@@ -1231,7 +1252,7 @@ export default function VehicleDetailsPage({
                 {/* Amount */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Amount
                   </label>
 
@@ -1241,19 +1262,17 @@ export default function VehicleDetailsPage({
                     step="0.01"
                     value={amount}
                     onChange={(event) =>
-                      setAmount(
-                        event.target.value
-                      )
+                      setAmount(event.target.value)
                     }
                     placeholder="e.g. 50000"
-                    className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B]"
+                    className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
 
                 {/* Date */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Date
                   </label>
 
@@ -1261,18 +1280,16 @@ export default function VehicleDetailsPage({
                     type="date"
                     value={date}
                     onChange={(event) =>
-                      setDate(
-                        event.target.value
-                      )
+                      setDate(event.target.value)
                     }
-                    className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none focus:border-[#C6752B]"
+                    className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
 
                 {/* Note */}
 
                 <div>
-                  <label className="text-sm font-medium text-zinc-300">
+                  <label className="text-sm font-medium text-[#25282D]">
                     Note
                   </label>
 
@@ -1280,18 +1297,16 @@ export default function VehicleDetailsPage({
                     type="text"
                     value={note}
                     onChange={(event) =>
-                      setNote(
-                        event.target.value
-                      )
+                      setNote(event.target.value)
                     }
                     placeholder="e.g. Fuel, trip payment, repairs..."
-                    className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B]"
+                    className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
               </div>
 
               {transactionError && (
-                <p className="mt-4 text-sm text-rose-400">
+                <p className="mt-4 text-sm text-rose-600">
                   {transactionError}
                 </p>
               )}
@@ -1300,7 +1315,7 @@ export default function VehicleDetailsPage({
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#C6752B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#A85F20] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#EF4B4B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#D93B3B] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 >
                   {submitting && (
                     <Loader2
@@ -1327,14 +1342,14 @@ export default function VehicleDetailsPage({
 
           {transactions.length === 0 ? (
             <div className="p-10 text-center">
-              <p className="text-sm text-zinc-500">
+              <p className="text-sm text-[#737780]">
                 No transactions recorded yet.
               </p>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full min-w-[650px] text-left">
-                <thead className="border-b border-zinc-800 text-xs uppercase text-zinc-500">
+                <thead className="border-b border-[#E8E9ED] text-xs uppercase text-[#A0A3AA]">
                   <tr>
                     <th className="px-6 py-4 font-medium">
                       Date
@@ -1351,6 +1366,7 @@ export default function VehicleDetailsPage({
                     <th className="px-6 py-4 text-right font-medium">
                       Amount
                     </th>
+
                     <th className="px-6 py-4 text-right font-medium">
                       Actions
                     </th>
@@ -1362,9 +1378,9 @@ export default function VehicleDetailsPage({
                     (transaction) => (
                       <tr
                         key={transaction.id}
-                        className="border-b border-zinc-800 last:border-0"
+                        className="border-b border-[#E8E9ED] last:border-0 hover:bg-[#F5F6F8]/60"
                       >
-                        <td className="whitespace-nowrap px-6 py-4 text-sm text-zinc-400">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm text-[#737780]">
                           {formatDate(
                             transaction.date
                           )}
@@ -1376,12 +1392,12 @@ export default function VehicleDetailsPage({
                             "income" ? (
                               <ArrowUpCircle
                                 size={17}
-                                className="text-emerald-400"
+                                className="text-emerald-600"
                               />
                             ) : (
                               <ArrowDownCircle
                                 size={17}
-                                className="text-rose-400"
+                                className="text-rose-600"
                               />
                             )}
 
@@ -1389,8 +1405,8 @@ export default function VehicleDetailsPage({
                               className={
                                 transaction.type ===
                                 "income"
-                                  ? "text-sm font-medium text-emerald-400"
-                                  : "text-sm font-medium text-rose-400"
+                                  ? "text-sm font-medium text-emerald-600"
+                                  : "text-sm font-medium text-rose-600"
                               }
                             >
                               {transaction.type ===
@@ -1401,17 +1417,16 @@ export default function VehicleDetailsPage({
                           </div>
                         </td>
 
-                        <td className="max-w-[280px] truncate px-6 py-4 text-sm text-zinc-300">
-                          {transaction.note ||
-                            "-"}
+                        <td className="max-w-[280px] truncate px-6 py-4 text-sm text-[#25282D]">
+                          {transaction.note || "-"}
                         </td>
 
                         <td
                           className={`whitespace-nowrap px-6 py-4 text-right text-sm font-semibold ${
                             transaction.type ===
                             "income"
-                              ? "text-emerald-400"
-                              : "text-rose-400"
+                              ? "text-emerald-600"
+                              : "text-rose-600"
                           }`}
                         >
                           {transaction.type ===
@@ -1423,15 +1438,18 @@ export default function VehicleDetailsPage({
                             transaction.amount
                           ).toLocaleString()}
                         </td>
+
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-end gap-1">
                             <button
                               type="button"
                               onClick={() =>
-                                openEditTransactionForm(transaction)
+                                openEditTransactionForm(
+                                  transaction
+                                )
                               }
                               aria-label={`Edit transaction ${transaction.id}`}
-                              className="rounded-lg p-2 text-zinc-500 transition hover:bg-zinc-800 hover:text-white"
+                              className="rounded-lg p-2 text-[#A0A3AA] transition hover:bg-[#F5F6F8] hover:text-[#25282D]"
                             >
                               <Pencil size={16} />
                             </button>
@@ -1439,10 +1457,12 @@ export default function VehicleDetailsPage({
                             <button
                               type="button"
                               onClick={() =>
-                                requestDeleteTransaction(transaction)
+                                requestDeleteTransaction(
+                                  transaction
+                                )
                               }
                               aria-label={`Delete transaction ${transaction.id}`}
-                              className="rounded-lg p-2 text-zinc-500 transition hover:bg-rose-500/10 hover:text-rose-400"
+                              className="rounded-lg p-2 text-[#A0A3AA] transition hover:bg-rose-50 hover:text-rose-600"
                             >
                               <Trash2 size={16} />
                             </button>
@@ -1460,20 +1480,19 @@ export default function VehicleDetailsPage({
         {/* Optional balance indicator */}
 
         {transactions.length > 0 && (
-          <div className="mt-4 flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3">
-            <span className="text-sm text-zinc-500">
+          <div className="mt-4 flex items-center justify-between rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 shadow-sm">
+            <span className="text-sm text-[#737780]">
               Current balance
             </span>
 
             <span
               className={`text-sm font-bold ${
                 balance >= 0
-                  ? "text-emerald-400"
-                  : "text-rose-400"
+                  ? "text-emerald-600"
+                  : "text-rose-600"
               }`}
             >
-              KES{" "}
-              {balance.toLocaleString()}
+              KES {balance.toLocaleString()}
             </span>
           </div>
         )}
@@ -1483,17 +1502,19 @@ export default function VehicleDetailsPage({
         -------------------------------------------------- */}
 
         {deletingTransactionId !== null && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
-            <div className="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow-2xl shadow-black/40">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#25282D]/40 px-4 backdrop-blur-sm">
+            <div className="w-full max-w-md rounded-2xl border border-[#E8E9ED] bg-white p-6 shadow-2xl">
               <div className="flex items-start gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-rose-500/10 text-rose-400">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600">
                   <Trash2 size={20} />
                 </div>
+
                 <div className="min-w-0">
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-lg font-semibold text-[#25282D]">
                     Delete transaction?
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+
+                  <p className="mt-2 text-sm leading-6 text-[#737780]">
                     This transaction will be permanently removed from this
                     lorry's financial records. This action cannot be undone.
                   </p>
@@ -1501,7 +1522,7 @@ export default function VehicleDetailsPage({
               </div>
 
               {transactionActionError && (
-                <div className="mt-4 rounded-lg border border-rose-500/20 bg-rose-500/10 px-3 py-2.5 text-sm text-rose-300">
+                <div className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2.5 text-sm text-rose-600">
                   {transactionActionError}
                 </div>
               )}
@@ -1511,10 +1532,11 @@ export default function VehicleDetailsPage({
                   type="button"
                   onClick={cancelDeleteTransaction}
                   disabled={deletingTransaction}
-                  className="rounded-lg border border-zinc-700 px-4 py-2.5 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white disabled:opacity-50"
+                  className="rounded-lg border border-[#E8E9ED] bg-white px-4 py-2.5 text-sm font-semibold text-[#737780] transition hover:bg-[#F5F6F8] hover:text-[#25282D] disabled:opacity-50"
                 >
                   Cancel
                 </button>
+
                 <button
                   type="button"
                   onClick={handleDeleteTransaction}
@@ -1522,9 +1544,15 @@ export default function VehicleDetailsPage({
                   className="flex items-center justify-center gap-2 rounded-lg bg-rose-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {deletingTransaction && (
-                    <Loader2 size={16} className="animate-spin" />
+                    <Loader2
+                      size={16}
+                      className="animate-spin"
+                    />
                   )}
-                  {deletingTransaction ? "Deleting..." : "Delete Transaction"}
+
+                  {deletingTransaction
+                    ? "Deleting..."
+                    : "Delete Transaction"}
                 </button>
               </div>
             </div>
@@ -1536,8 +1564,8 @@ export default function VehicleDetailsPage({
         -------------------------------------------------- */}
 
         {alert && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
-            <div className="w-full max-w-md overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl shadow-black/50">
+          <div className="fixed inset-0 z-[60] flex items-center justify-center bg-[#25282D]/40 px-4 backdrop-blur-sm">
+            <div className="w-full max-w-md overflow-hidden rounded-2xl border border-[#E8E9ED] bg-white shadow-2xl">
               <div
                 className={`h-1.5 w-full ${
                   alert.type === "success"
@@ -1551,8 +1579,8 @@ export default function VehicleDetailsPage({
                   <div
                     className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${
                       alert.type === "success"
-                        ? "bg-emerald-500/10 text-emerald-400"
-                        : "bg-rose-500/10 text-rose-400"
+                        ? "bg-emerald-50 text-emerald-600"
+                        : "bg-rose-50 text-rose-600"
                     }`}
                   >
                     {alert.type === "success" ? (
@@ -1563,10 +1591,11 @@ export default function VehicleDetailsPage({
                   </div>
 
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-lg font-semibold text-[#25282D]">
                       {alert.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-6 text-zinc-400">
+
+                    <p className="mt-1.5 text-sm leading-6 text-[#737780]">
                       {alert.message}
                     </p>
                   </div>
@@ -1574,7 +1603,7 @@ export default function VehicleDetailsPage({
                   <button
                     type="button"
                     onClick={() => setAlert(null)}
-                    className="rounded-lg p-1.5 text-zinc-500 transition hover:bg-zinc-800 hover:text-white"
+                    className="rounded-lg p-1.5 text-[#A0A3AA] transition hover:bg-[#F5F6F8] hover:text-[#25282D]"
                     aria-label="Close alert"
                   >
                     <X size={18} />
@@ -1588,10 +1617,11 @@ export default function VehicleDetailsPage({
                         type="button"
                         onClick={() => setAlert(null)}
                         disabled={archiving}
-                        className="rounded-lg border border-zinc-700 px-4 py-2.5 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white disabled:opacity-50"
+                        className="rounded-lg border border-[#E8E9ED] bg-white px-4 py-2.5 text-sm font-semibold text-[#737780] transition hover:bg-[#F5F6F8] hover:text-[#25282D] disabled:opacity-50"
                       >
                         Cancel
                       </button>
+
                       <button
                         type="button"
                         onClick={() => {
@@ -1602,9 +1632,15 @@ export default function VehicleDetailsPage({
                         className="flex items-center gap-2 rounded-lg bg-rose-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         {archiving && (
-                          <Loader2 size={16} className="animate-spin" />
+                          <Loader2
+                            size={16}
+                            className="animate-spin"
+                          />
                         )}
-                        {archiving ? "Archiving..." : "Archive Lorry"}
+
+                        {archiving
+                          ? "Archiving..."
+                          : "Archive Lorry"}
                       </button>
                     </>
                   ) : (

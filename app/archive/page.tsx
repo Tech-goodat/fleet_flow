@@ -19,6 +19,8 @@ import {
 
 const API_URL = "https://fleet-backend-np49.onrender.com/api"
 
+const COMPANY_NAME = "FleetFlow"
+
 interface Vehicle {
   id: number
   registration_number: string
@@ -221,9 +223,7 @@ export default function ArchivePage() {
       ===================================================== */}
 
       {alert && (
-        <div
-          className="fixed right-4 top-4 z-[100] w-[calc(100%-2rem)] max-w-sm animate-[slideIn_.35s_ease-out]"
-        >
+        <div className="fixed right-4 top-4 z-[100] w-[calc(100%-2rem)] max-w-sm animate-[slideIn_.35s_ease-out]">
           <div
             className={`relative overflow-hidden rounded-2xl border bg-zinc-900/95 p-4 shadow-2xl backdrop-blur-xl ${
               alert.type === "success"
@@ -297,7 +297,7 @@ export default function ArchivePage() {
         <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
           <div className="w-full max-w-md animate-[modalIn_.25s_ease-out] rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow-2xl">
             {/* Icon */}
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98A3D]/10 text-[#D98A3D]">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#EF5B55]/10 text-[#EF5B55]">
               <TriangleAlert size={24} />
             </div>
 
@@ -319,7 +319,7 @@ export default function ArchivePage() {
             {/* Vehicle preview */}
             <div className="mt-5 rounded-xl border border-zinc-800 bg-zinc-950 p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#C6752B]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#EF5B55] text-white">
                   <Truck size={20} />
                 </div>
 
@@ -347,7 +347,7 @@ export default function ArchivePage() {
 
               <button
                 onClick={confirmRestore}
-                className="flex items-center justify-center gap-2 rounded-lg bg-[#C6752B] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#A85F20]"
+                className="flex items-center justify-center gap-2 rounded-lg bg-[#EF5B55] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#D94B46]"
               >
                 <RotateCcw size={17} />
                 Restore Lorry
@@ -373,7 +373,10 @@ export default function ArchivePage() {
 
             <div>
               <h1 className="text-lg font-bold">
-                Fan<span className="text-[#D98A3D]">A</span>Na
+                Fleet
+                <span className="text-[#EF5B55]">
+                  Flow
+                </span>
               </h1>
 
               <p className="text-xs text-zinc-500">
@@ -394,7 +397,7 @@ export default function ArchivePage() {
 
       <section className="mx-auto max-w-7xl px-6 py-10">
         <div className="mb-8">
-          <p className="text-sm font-medium text-[#D98A3D]">
+          <p className="text-sm font-medium text-[#EF5B55]">
             Fleet Archive
           </p>
 
@@ -417,7 +420,7 @@ export default function ArchivePage() {
               <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900">
                 <Loader2
                   size={21}
-                  className="animate-spin text-[#D98A3D]"
+                  className="animate-spin text-[#EF5B55]"
                 />
               </div>
 
@@ -485,7 +488,7 @@ export default function ArchivePage() {
                   {/* Vehicle heading */}
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#C6752B] text-white">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#EF5B55] text-white">
                         <Truck size={24} />
                       </div>
 
@@ -599,7 +602,7 @@ export default function ArchivePage() {
                       disabled={
                         restoringId === vehicle.id
                       }
-                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#C6752B] py-3 text-sm font-semibold text-white transition hover:bg-[#A85F20] disabled:cursor-not-allowed disabled:opacity-60"
+                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#EF5B55] py-3 text-sm font-semibold text-white transition hover:bg-[#D94B46] disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {restoringId === vehicle.id ? (
                         <>

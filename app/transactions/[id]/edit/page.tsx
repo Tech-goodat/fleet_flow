@@ -292,11 +292,11 @@ export default function EditTransactionPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-zinc-950 text-white">
-        <div className="flex items-center gap-3 text-zinc-400">
+      <main className="flex min-h-screen items-center justify-center bg-[#F5F6F8] text-[#25282D]">
+        <div className="flex items-center gap-3 text-[#737780]">
           <Loader2
             size={20}
-            className="animate-spin"
+            className="animate-spin text-[#EF4B4B]"
           />
           Loading transaction...
         </div>
@@ -310,22 +310,22 @@ export default function EditTransactionPage() {
 
   if (!transaction && error) {
     return (
-      <main className="min-h-screen bg-zinc-950 text-white">
-        <header className="border-b border-zinc-800">
+      <main className="min-h-screen bg-[#F5F6F8] text-[#25282D]">
+        <header className="border-b border-[#E8E9ED] bg-white">
           <div className="mx-auto flex max-w-4xl items-center gap-3 px-6 py-5">
             <Link
               href="/accounting"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 transition hover:border-zinc-700 hover:text-white"
+              className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#E8E9ED] bg-white text-[#737780] transition hover:border-[#EF4B4B]/30 hover:bg-[#EF4B4B]/5 hover:text-[#25282D]"
             >
               <ArrowLeft size={20} />
             </Link>
 
             <div>
-              <h1 className="text-lg font-bold">
-                Fleet<span className="text-[#D98A3D]">Flow</span>
+              <h1 className="text-lg font-bold text-[#25282D]">
+                Fleet<span className="text-[#EF4B4B]">Flow</span>
               </h1>
 
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-[#737780]">
                 Accounting
               </p>
             </div>
@@ -333,23 +333,23 @@ export default function EditTransactionPage() {
         </header>
 
         <section className="mx-auto max-w-4xl px-6 py-16">
-          <div className="rounded-xl border border-rose-500/20 bg-rose-500/10 p-8 text-center">
+          <div className="rounded-xl border border-rose-200 bg-white p-8 text-center shadow-sm">
             <AlertCircle
               size={40}
-              className="mx-auto text-rose-400"
+              className="mx-auto text-rose-500"
             />
 
-            <h2 className="mt-4 text-xl font-semibold">
+            <h2 className="mt-4 text-xl font-semibold text-[#25282D]">
               Transaction unavailable
             </h2>
 
-            <p className="mt-2 text-sm text-rose-400">
+            <p className="mt-2 text-sm text-rose-600">
               {error}
             </p>
 
             <Link
               href="/accounting"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg border border-zinc-700 px-5 py-3 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg border border-[#E8E9ED] bg-white px-5 py-3 text-sm font-semibold text-[#737780] transition hover:bg-[#F5F6F8] hover:text-[#25282D]"
             >
               <ArrowLeft size={16} />
               Back to Accounting
@@ -365,31 +365,31 @@ export default function EditTransactionPage() {
   // --------------------------------------------------
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white">
+    <main className="min-h-screen bg-[#F5F6F8] text-[#25282D]">
       {/* HEADER */}
 
-      <header className="border-b border-zinc-800 bg-zinc-950">
+      <header className="border-b border-[#E8E9ED] bg-white">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
             <Link
               href="/accounting"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 transition hover:border-zinc-700 hover:text-white"
+              className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#E8E9ED] bg-white text-[#737780] transition hover:border-[#EF4B4B]/30 hover:bg-[#EF4B4B]/5 hover:text-[#25282D]"
             >
               <ArrowLeft size={20} />
             </Link>
 
             <div>
-              <h1 className="text-lg font-bold">
-                Fleet<span className="text-[#D98A3D]">Flow</span>
+              <h1 className="text-lg font-bold text-[#25282D]">
+                Fleet<span className="text-[#EF4B4B]">Flow</span>
               </h1>
 
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-[#737780]">
                 Accounting
               </p>
             </div>
           </div>
 
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 text-zinc-400">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#EF4B4B]/10 text-[#EF4B4B]">
             <Receipt size={20} />
           </div>
         </div>
@@ -399,15 +399,15 @@ export default function EditTransactionPage() {
         {/* TITLE */}
 
         <div className="mb-8">
-          <p className="text-sm font-medium text-[#D98A3D]">
+          <p className="text-sm font-semibold text-[#EF4B4B]">
             Financial Management
           </p>
 
-          <h2 className="mt-2 text-3xl font-bold">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#25282D]">
             Edit Transaction
           </h2>
 
-          <p className="mt-2 text-zinc-400">
+          <p className="mt-2 text-[#737780]">
             Update the details of this financial transaction.
           </p>
         </div>
@@ -415,19 +415,19 @@ export default function EditTransactionPage() {
         {/* TRANSACTION REFERENCE */}
 
         {transaction && (
-          <div className="mb-6 flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900 px-5 py-4">
+          <div className="mb-6 flex items-center justify-between rounded-xl border border-[#E8E9ED] bg-white px-5 py-4 shadow-sm">
             <div className="flex items-center gap-3">
               <Receipt
                 size={19}
-                className="text-zinc-500"
+                className="text-[#737780]"
               />
 
               <div>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-[#A0A3AA]">
                   Transaction reference
                 </p>
 
-                <p className="mt-1 font-mono text-sm font-semibold">
+                <p className="mt-1 font-mono text-sm font-semibold text-[#25282D]">
                   TXN-
                   {String(transaction.id).padStart(
                     5,
@@ -440,8 +440,8 @@ export default function EditTransactionPage() {
             <span
               className={`rounded-full border px-3 py-1 text-xs font-medium ${
                 type === "income"
-                  ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
-                  : "border-rose-500/20 bg-rose-500/10 text-rose-400"
+                  ? "border-emerald-200 bg-emerald-50 text-emerald-600"
+                  : "border-rose-200 bg-rose-50 text-rose-600"
               }`}
             >
               {type === "income"
@@ -454,7 +454,7 @@ export default function EditTransactionPage() {
         {/* SUCCESS */}
 
         {success && (
-          <div className="mb-6 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-sm text-emerald-400">
+          <div className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-600">
             {success}
           </div>
         )}
@@ -462,7 +462,7 @@ export default function EditTransactionPage() {
         {/* ERROR */}
 
         {error && (
-          <div className="mb-6 rounded-xl border border-rose-500/20 bg-rose-500/10 p-4 text-sm text-rose-400">
+          <div className="mb-6 rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-600">
             {error}
           </div>
         )}
@@ -471,14 +471,14 @@ export default function EditTransactionPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-xl border border-zinc-800 bg-zinc-900"
+          className="rounded-xl border border-[#E8E9ED] bg-white shadow-sm"
         >
-          <div className="border-b border-zinc-800 p-6">
-            <h3 className="text-lg font-semibold">
+          <div className="border-b border-[#E8E9ED] p-6">
+            <h3 className="text-lg font-semibold text-[#25282D]">
               Transaction Details
             </h3>
 
-            <p className="mt-1 text-sm text-zinc-500">
+            <p className="mt-1 text-sm text-[#737780]">
               Make the necessary changes below.
             </p>
           </div>
@@ -487,14 +487,14 @@ export default function EditTransactionPage() {
             {/* LORRY */}
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-zinc-300">
+              <label className="mb-2 block text-sm font-medium text-[#25282D]">
                 Lorry
               </label>
 
               <div className="relative">
                 <Truck
                   size={18}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A0A3AA]"
                 />
 
                 <select
@@ -502,7 +502,7 @@ export default function EditTransactionPage() {
                   onChange={(event) =>
                     setVehicleId(event.target.value)
                   }
-                  className="w-full appearance-none rounded-lg border border-zinc-700 bg-zinc-900 py-3 pl-10 pr-4 text-sm text-white outline-none transition focus:border-[#C6752B]"
+                  className="w-full appearance-none rounded-lg border border-[#E8E9ED] bg-white py-3 pl-10 pr-4 text-sm text-[#25282D] outline-none transition focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                 >
                   <option value="">
                     Select lorry
@@ -526,7 +526,7 @@ export default function EditTransactionPage() {
             {/* TYPE */}
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-zinc-300">
+              <label className="mb-2 block text-sm font-medium text-[#25282D]">
                 Transaction Type
               </label>
 
@@ -536,8 +536,8 @@ export default function EditTransactionPage() {
                   onClick={() => setType("income")}
                   className={`rounded-lg border px-4 py-3 text-sm font-semibold transition ${
                     type === "income"
-                      ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
-                      : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600"
+                      ? "border-emerald-200 bg-emerald-50 text-emerald-600"
+                      : "border-[#E8E9ED] bg-white text-[#737780] hover:border-emerald-200 hover:bg-emerald-50/50"
                   }`}
                 >
                   Income
@@ -548,8 +548,8 @@ export default function EditTransactionPage() {
                   onClick={() => setType("expense")}
                   className={`rounded-lg border px-4 py-3 text-sm font-semibold transition ${
                     type === "expense"
-                      ? "border-rose-500/40 bg-rose-500/10 text-rose-400"
-                      : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600"
+                      ? "border-rose-200 bg-rose-50 text-rose-600"
+                      : "border-[#E8E9ED] bg-white text-[#737780] hover:border-rose-200 hover:bg-rose-50/50"
                   }`}
                 >
                   Expenditure
@@ -563,14 +563,14 @@ export default function EditTransactionPage() {
               {/* AMOUNT */}
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-zinc-300">
+                <label className="mb-2 block text-sm font-medium text-[#25282D]">
                   Amount
                 </label>
 
                 <div className="relative">
                   <Wallet
                     size={18}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A0A3AA]"
                   />
 
                   <input
@@ -582,7 +582,7 @@ export default function EditTransactionPage() {
                       setAmount(event.target.value)
                     }
                     placeholder="0.00"
-                    className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-3 pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-zinc-600 focus:border-[#C6752B]"
+                    className="w-full rounded-lg border border-[#E8E9ED] bg-white py-3 pl-10 pr-4 text-sm text-[#25282D] outline-none transition placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
               </div>
@@ -590,14 +590,14 @@ export default function EditTransactionPage() {
               {/* DATE */}
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-zinc-300">
+                <label className="mb-2 block text-sm font-medium text-[#25282D]">
                   Date
                 </label>
 
                 <div className="relative">
                   <Calendar
                     size={18}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A0A3AA]"
                   />
 
                   <input
@@ -606,7 +606,7 @@ export default function EditTransactionPage() {
                     onChange={(event) =>
                       setDate(event.target.value)
                     }
-                    className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-3 pl-10 pr-4 text-sm text-white outline-none transition focus:border-[#C6752B]"
+                    className="w-full rounded-lg border border-[#E8E9ED] bg-white py-3 pl-10 pr-4 text-sm text-[#25282D] outline-none transition focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
               </div>
@@ -615,14 +615,14 @@ export default function EditTransactionPage() {
             {/* PARTICULARS */}
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-zinc-300">
+              <label className="mb-2 block text-sm font-medium text-[#25282D]">
                 Particulars
               </label>
 
               <div className="relative">
                 <FileText
                   size={18}
-                  className="absolute left-3 top-3 text-zinc-500"
+                  className="absolute left-3 top-3 text-[#A0A3AA]"
                 />
 
                 <textarea
@@ -633,11 +633,11 @@ export default function EditTransactionPage() {
                   rows={4}
                   maxLength={255}
                   placeholder="e.g. Fuel purchase, trip payment, driver allowance..."
-                  className="w-full resize-none rounded-lg border border-zinc-700 bg-zinc-900 py-3 pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-zinc-600 focus:border-[#C6752B]"
+                  className="w-full resize-none rounded-lg border border-[#E8E9ED] bg-white py-3 pl-10 pr-4 text-sm text-[#25282D] outline-none transition placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                 />
               </div>
 
-              <p className="mt-2 text-right text-xs text-zinc-600">
+              <p className="mt-2 text-right text-xs text-[#A0A3AA]">
                 {note.length}/255
               </p>
             </div>
@@ -645,12 +645,12 @@ export default function EditTransactionPage() {
 
           {/* ACTIONS */}
 
-          <div className="flex flex-col-reverse gap-3 border-t border-zinc-800 p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col-reverse gap-3 border-t border-[#E8E9ED] p-6 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="button"
               onClick={handleDelete}
               disabled={saving}
-              className="rounded-lg border border-rose-500/20 px-5 py-3 text-sm font-semibold text-rose-400 transition hover:bg-rose-500/10 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-lg border border-rose-200 bg-white px-5 py-3 text-sm font-semibold text-rose-600 transition hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Delete Transaction
             </button>
@@ -658,7 +658,7 @@ export default function EditTransactionPage() {
             <div className="flex gap-3">
               <Link
                 href="/accounting"
-                className="rounded-lg border border-zinc-700 px-5 py-3 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+                className="rounded-lg border border-[#E8E9ED] bg-white px-5 py-3 text-sm font-semibold text-[#737780] transition hover:bg-[#F5F6F8] hover:text-[#25282D]"
               >
                 Cancel
               </Link>
@@ -666,7 +666,7 @@ export default function EditTransactionPage() {
               <button
                 type="submit"
                 disabled={saving}
-                className="flex items-center justify-center gap-2 rounded-lg bg-[#C6752B] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#A85F20] disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex items-center justify-center gap-2 rounded-lg bg-[#EF4B4B] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#D93B3B] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {saving ? (
                   <>

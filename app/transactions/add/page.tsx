@@ -166,16 +166,16 @@ export default function AddTransactionPage() {
   }
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white">
+    <main className="min-h-screen bg-[#F5F6F8] text-[#25282D]">
       {/* --------------------------------------------------
           HEADER
       -------------------------------------------------- */}
 
-      <header className="border-b border-zinc-800 bg-zinc-950">
+      <header className="border-b border-[#E8E9ED] bg-white">
         <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6 sm:py-5">
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#737780] transition hover:text-[#EF4B4B]"
           >
             <ArrowLeft size={18} />
             Back to Fleet
@@ -192,16 +192,16 @@ export default function AddTransactionPage() {
 
         <div className="mb-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#C6752B]">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#EF4B4B] text-white">
               <Save size={23} />
             </div>
 
             <div>
-              <h1 className="text-2xl font-bold sm:text-3xl">
+              <h1 className="text-2xl font-bold tracking-tight text-[#25282D] sm:text-3xl">
                 Add Transaction
               </h1>
 
-              <p className="mt-1 text-sm text-zinc-500">
+              <p className="mt-1 text-sm text-[#737780]">
                 Record income or expenses for a lorry.
               </p>
             </div>
@@ -212,13 +212,13 @@ export default function AddTransactionPage() {
             FORM CARD
         -------------------------------------------------- */}
 
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900">
-          <div className="border-b border-zinc-800 p-5 sm:p-6">
-            <h2 className="text-lg font-semibold">
+        <div className="rounded-xl border border-[#E8E9ED] bg-white shadow-sm">
+          <div className="border-b border-[#E8E9ED] p-5 sm:p-6">
+            <h2 className="text-lg font-semibold text-[#25282D]">
               Transaction Details
             </h2>
 
-            <p className="mt-1 text-sm text-zinc-500">
+            <p className="mt-1 text-sm text-[#737780]">
               Enter the financial activity below.
             </p>
           </div>
@@ -233,8 +233,11 @@ export default function AddTransactionPage() {
               -------------------------------------------------- */}
 
               <div className="md:col-span-2">
-                <label className="flex items-center gap-2 text-sm font-medium text-zinc-300">
-                  <Truck size={16} />
+                <label className="flex items-center gap-2 text-sm font-medium text-[#25282D]">
+                  <Truck
+                    size={16}
+                    className="text-[#737780]"
+                  />
                   Lorry
                 </label>
 
@@ -244,7 +247,7 @@ export default function AddTransactionPage() {
                     setVehicleId(event.target.value)
                   }
                   disabled={loadingVehicles}
-                  className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-[#C6752B] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none transition focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="">
                     {loadingVehicles
@@ -269,7 +272,7 @@ export default function AddTransactionPage() {
               -------------------------------------------------- */}
 
               <div className="md:col-span-2">
-                <label className="text-sm font-medium text-zinc-300">
+                <label className="text-sm font-medium text-[#25282D]">
                   Transaction Type
                 </label>
 
@@ -283,29 +286,29 @@ export default function AddTransactionPage() {
                     }
                     className={`flex items-center gap-3 rounded-lg border p-4 text-left transition ${
                       transactionType === "income"
-                        ? "border-emerald-500/40 bg-emerald-500/10"
-                        : "border-zinc-700 bg-zinc-900 hover:border-zinc-600"
+                        ? "border-emerald-200 bg-emerald-50"
+                        : "border-[#E8E9ED] bg-white hover:border-emerald-200 hover:bg-emerald-50/50"
                     }`}
                   >
                     <div
                       className={`flex h-10 w-10 items-center justify-center rounded-lg ${
                         transactionType === "income"
-                          ? "bg-emerald-500/10"
-                          : "bg-zinc-800"
+                          ? "bg-emerald-100"
+                          : "bg-[#F5F6F8]"
                       }`}
                     >
                       <ArrowUpCircle
                         size={21}
-                        className="text-emerald-400"
+                        className="text-emerald-600"
                       />
                     </div>
 
                     <div>
-                      <p className="text-sm font-semibold text-white">
+                      <p className="text-sm font-semibold text-[#25282D]">
                         Income
                       </p>
 
-                      <p className="mt-0.5 text-xs text-zinc-500">
+                      <p className="mt-0.5 text-xs text-[#737780]">
                         Money received
                       </p>
                     </div>
@@ -320,29 +323,29 @@ export default function AddTransactionPage() {
                     }
                     className={`flex items-center gap-3 rounded-lg border p-4 text-left transition ${
                       transactionType === "expense"
-                        ? "border-rose-500/40 bg-rose-500/10"
-                        : "border-zinc-700 bg-zinc-900 hover:border-zinc-600"
+                        ? "border-rose-200 bg-rose-50"
+                        : "border-[#E8E9ED] bg-white hover:border-rose-200 hover:bg-rose-50/50"
                     }`}
                   >
                     <div
                       className={`flex h-10 w-10 items-center justify-center rounded-lg ${
                         transactionType === "expense"
-                          ? "bg-rose-500/10"
-                          : "bg-zinc-800"
+                          ? "bg-rose-100"
+                          : "bg-[#F5F6F8]"
                       }`}
                     >
                       <ArrowDownCircle
                         size={21}
-                        className="text-rose-400"
+                        className="text-rose-600"
                       />
                     </div>
 
                     <div>
-                      <p className="text-sm font-semibold text-white">
+                      <p className="text-sm font-semibold text-[#25282D]">
                         Expense
                       </p>
 
-                      <p className="mt-0.5 text-xs text-zinc-500">
+                      <p className="mt-0.5 text-xs text-[#737780]">
                         Money spent
                       </p>
                     </div>
@@ -355,12 +358,12 @@ export default function AddTransactionPage() {
               -------------------------------------------------- */}
 
               <div>
-                <label className="text-sm font-medium text-zinc-300">
+                <label className="text-sm font-medium text-[#25282D]">
                   Amount
                 </label>
 
                 <div className="relative mt-2">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-zinc-500">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-[#737780]">
                     KES
                   </span>
 
@@ -373,7 +376,7 @@ export default function AddTransactionPage() {
                       setAmount(event.target.value)
                     }
                     placeholder="0.00"
-                    className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-3 pl-14 pr-4 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B]"
+                    className="w-full rounded-lg border border-[#E8E9ED] bg-white py-3 pl-14 pr-4 text-sm text-[#25282D] outline-none placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                   />
                 </div>
               </div>
@@ -383,7 +386,7 @@ export default function AddTransactionPage() {
               -------------------------------------------------- */}
 
               <div>
-                <label className="text-sm font-medium text-zinc-300">
+                <label className="text-sm font-medium text-[#25282D]">
                   Date
                 </label>
 
@@ -393,7 +396,7 @@ export default function AddTransactionPage() {
                   onChange={(event) =>
                     setDate(event.target.value)
                   }
-                  className="mt-2 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none focus:border-[#C6752B]"
+                  className="mt-2 w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                 />
               </div>
 
@@ -402,7 +405,7 @@ export default function AddTransactionPage() {
               -------------------------------------------------- */}
 
               <div className="md:col-span-2">
-                <label className="text-sm font-medium text-zinc-300">
+                <label className="text-sm font-medium text-[#25282D]">
                   Note
                 </label>
 
@@ -413,7 +416,7 @@ export default function AddTransactionPage() {
                   }
                   placeholder="e.g. Fuel, trip payment, repairs, driver allowance..."
                   rows={4}
-                  className="mt-2 w-full resize-none rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B]"
+                  className="mt-2 w-full resize-none rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none placeholder:text-[#A0A3AA] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                 />
               </div>
             </div>
@@ -423,13 +426,13 @@ export default function AddTransactionPage() {
             -------------------------------------------------- */}
 
             {error && (
-              <div className="mt-5 rounded-lg border border-rose-500/20 bg-rose-500/10 p-4 text-sm text-rose-400">
+              <div className="mt-5 rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-600">
                 {error}
               </div>
             )}
 
             {success && (
-              <div className="mt-5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-4 text-sm text-emerald-400">
+              <div className="mt-5 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-600">
                 {success}
               </div>
             )}
@@ -441,7 +444,7 @@ export default function AddTransactionPage() {
             <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
               <Link
                 href="/dashboard"
-                className="flex items-center justify-center rounded-lg border border-zinc-700 px-5 py-3 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+                className="flex items-center justify-center rounded-lg border border-[#E8E9ED] bg-white px-5 py-3 text-sm font-semibold text-[#737780] transition hover:bg-[#F5F6F8] hover:text-[#25282D]"
               >
                 Cancel
               </Link>
@@ -449,7 +452,7 @@ export default function AddTransactionPage() {
               <button
                 type="submit"
                 disabled={submitting || loadingVehicles}
-                className="flex items-center justify-center gap-2 rounded-lg bg-[#C6752B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#A85F20] disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex items-center justify-center gap-2 rounded-lg bg-[#EF4B4B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#D93B3B] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {submitting ? (
                   <>

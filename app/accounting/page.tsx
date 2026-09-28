@@ -26,7 +26,7 @@ import {
 
 const API_URL = "https://fleet-backend-np49.onrender.com/api"
 
-const COMPANY_NAME = "FanANa"
+const COMPANY_NAME = "FleetFlow"
 
 interface Vehicle {
   id: number
@@ -427,7 +427,10 @@ export default function AccountingPage() {
                 ? transaction.date.slice(0, 10)
                 : ""
 
-            if (transactionDate !== dateFilter) {
+            if (
+              transactionDate !==
+              dateFilter
+            ) {
               return false
             }
           }
@@ -576,8 +579,6 @@ export default function AccountingPage() {
   // --------------------------------------------------
 
   const statementPeriod = useMemo(() => {
-    // If a specific date is selected,
-    // represent that exact day.
     if (dateFilter !== "all") {
       const [year, month, day] =
         dateFilter.split("-").map(Number)
@@ -596,8 +597,6 @@ export default function AccountingPage() {
       }
     }
 
-    // If a specific month is selected,
-    // represent the complete month.
     if (monthFilter !== "all") {
       const [year, month] =
         monthFilter
@@ -658,7 +657,9 @@ export default function AccountingPage() {
       const parts: string[] = []
 
       if (dateFilter !== "all") {
-        parts.push(`Date: ${formatDate(dateFilter)}`)
+        parts.push(
+          `Date: ${formatDate(dateFilter)}`
+        )
       }
 
       if (monthFilter !== "all") {
@@ -706,11 +707,6 @@ export default function AccountingPage() {
       search,
       vehicles,
     ])
-
-  // --------------------------------------------------
-  // FORMATTING
-  // --------------------------------------------------
-
 
   // --------------------------------------------------
   // OPEN DELETE CONFIRMATION
@@ -1011,11 +1007,11 @@ export default function AccountingPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-zinc-950 text-white">
-        <div className="flex items-center gap-3 text-zinc-400">
+      <main className="flex min-h-screen items-center justify-center bg-[#F5F6F8] text-[#25282D]">
+        <div className="flex items-center gap-3 text-[#737780]">
           <Loader2
             size={20}
-            className="animate-spin"
+            className="animate-spin text-[#EF4B4B]"
           />
 
           Loading accounting...
@@ -1025,44 +1021,48 @@ export default function AccountingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white">
+    <main className="min-h-screen bg-[#F5F6F8] text-[#25282D]">
+
       {/* ==================================================
           HEADER
       ================================================== */}
 
-      <header className="border-b border-zinc-800 bg-zinc-950 print:hidden">
+      <header className="border-b border-[#E8E9ED] bg-white print:hidden">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 sm:py-5 lg:flex-row lg:items-center lg:justify-between">
+
           {/* BRAND */}
 
           <div className="flex items-center gap-3">
+
             <Link
               href="/dashboard"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 transition hover:border-zinc-700 hover:text-white"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E1E3E7] bg-white text-[#737780] transition hover:border-[#EF4B4B] hover:text-[#EF4B4B]"
             >
               <ArrowLeft size={20} />
             </Link>
 
             <div className="min-w-0">
-              <h1 className="text-lg font-bold">
-                Fan
-                <span className="text-[#D98A3D]">
-                  A
+              <h1 className="text-lg font-bold tracking-tight">
+                Fleet
+                <span className="text-[#EF4B4B]">
+                  Flow
                 </span>
-                Na
               </h1>
 
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-[#8A8D94]">
                 Accounting
               </p>
             </div>
+
           </div>
 
           {/* QUICK ACTIONS */}
 
           <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
+
             <Link
               href="/transactions/add"
-              className="flex items-center justify-center gap-1.5 rounded-lg border border-zinc-700 px-2 py-2.5 text-xs font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white sm:px-3 sm:text-sm"
+              className="flex items-center justify-center gap-1.5 rounded-lg border border-[#E1E3E7] bg-white px-2 py-2.5 text-xs font-semibold text-[#4B4F55] transition hover:border-[#EF4B4B] hover:bg-[#FFF7F7] hover:text-[#EF4B4B] sm:px-3 sm:text-sm"
             >
               <Plus
                 size={16}
@@ -1082,7 +1082,7 @@ export default function AccountingPage() {
 
             <button
               onClick={handlePrint}
-              className="flex items-center justify-center gap-1.5 rounded-lg border border-zinc-700 px-2 py-2.5 text-xs font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white sm:px-3 sm:text-sm"
+              className="flex items-center justify-center gap-1.5 rounded-lg border border-[#E1E3E7] bg-white px-2 py-2.5 text-xs font-semibold text-[#4B4F55] transition hover:border-[#EF4B4B] hover:bg-[#FFF7F7] hover:text-[#EF4B4B] sm:px-3 sm:text-sm"
             >
               <Printer
                 size={16}
@@ -1102,7 +1102,7 @@ export default function AccountingPage() {
 
             <button
               onClick={exportCSV}
-              className="flex items-center justify-center gap-1.5 rounded-lg bg-[#C6752B] px-2 py-2.5 text-xs font-semibold text-white transition hover:bg-[#A85F20] sm:px-4 sm:text-sm"
+              className="flex items-center justify-center gap-1.5 rounded-lg bg-[#EF4B4B] px-2 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-[#D93B3B] sm:px-4 sm:text-sm"
             >
               <Download
                 size={16}
@@ -1119,6 +1119,7 @@ export default function AccountingPage() {
                 </span>
               </span>
             </button>
+
           </div>
         </div>
       </header>
@@ -1128,37 +1129,40 @@ export default function AccountingPage() {
       ================================================== */}
 
       <section className="mx-auto max-w-7xl px-6 py-10 print:hidden">
+
         {/* PAGE TITLE */}
 
         <div className="mb-8 flex items-start justify-between">
+
           <div>
-            <p className="text-sm font-medium text-[#D98A3D]">
+            <p className="text-sm font-semibold text-[#EF4B4B]">
               Financial Management
             </p>
 
-            <h2 className="mt-2 text-3xl font-bold">
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#25282D]">
               Accounting
             </h2>
 
-            <p className="mt-2 text-zinc-400">
+            <p className="mt-2 text-[#737780]">
               Track your fleet&apos;s income,
               expenditure and
               profitability.
             </p>
           </div>
 
-          <div className="hidden rounded-xl border border-zinc-800 bg-zinc-900 p-3 md:block">
+          <div className="hidden rounded-xl border border-[#E8E9ED] bg-white p-3 shadow-sm md:block">
             <FileText
               size={26}
-              className="text-[#D98A3D]"
+              className="text-[#EF4B4B]"
             />
           </div>
+
         </div>
 
         {/* ERROR */}
 
         {error && (
-          <div className="mb-6 flex items-start gap-3 rounded-xl border border-rose-500/20 bg-rose-500/10 p-4 text-sm text-rose-400">
+          <div className="mb-6 flex items-start gap-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-600">
             <AlertTriangle
               size={18}
               className="mt-0.5 shrink-0"
@@ -1170,88 +1174,101 @@ export default function AccountingPage() {
               onClick={() =>
                 setError("")
               }
-              className="ml-auto text-rose-400 transition hover:text-rose-300"
+              className="ml-auto text-rose-500 transition hover:text-rose-700"
             >
               <X size={16} />
             </button>
           </div>
         )}
 
-        {/* OVERVIEW TILES */}
+        {/* ==================================================
+            OVERVIEW TILES
+        ================================================== */}
 
         <div className="mb-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+
           {/* TOTAL INCOME */}
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm transition hover:shadow-md">
+
             <div className="flex items-center justify-between">
+
               <div>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-[#737780]">
                   Total Income
                 </p>
 
-                <p className="mt-2 text-2xl font-bold text-emerald-400">
+                <p className="mt-2 text-2xl font-bold text-emerald-600">
                   {formatCurrency(
                     totalIncome
                   )}
                 </p>
               </div>
 
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-500/10">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-50">
                 <TrendingUp
                   size={21}
-                  className="text-emerald-400"
+                  className="text-emerald-600"
                 />
               </div>
+
             </div>
 
-            <p className="mt-3 text-xs text-zinc-500">
+            <p className="mt-3 text-xs text-[#9A9DA3]">
               All recorded fleet income
             </p>
+
           </div>
 
           {/* TOTAL EXPENDITURE */}
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm transition hover:shadow-md">
+
             <div className="flex items-center justify-between">
+
               <div>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-[#737780]">
                   Total Expenditure
                 </p>
 
-                <p className="mt-2 text-2xl font-bold text-rose-400">
+                <p className="mt-2 text-2xl font-bold text-rose-500">
                   {formatCurrency(
                     totalExpenses
                   )}
                 </p>
               </div>
 
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-rose-500/10">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-rose-50">
                 <TrendingDown
                   size={21}
-                  className="text-rose-400"
+                  className="text-rose-500"
                 />
               </div>
+
             </div>
 
-            <p className="mt-3 text-xs text-zinc-500">
+            <p className="mt-3 text-xs text-[#9A9DA3]">
               All recorded fleet expenses
             </p>
+
           </div>
 
           {/* NET PROFIT */}
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm transition hover:shadow-md">
+
             <div className="flex items-center justify-between">
+
               <div>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-[#737780]">
                   Net Profit / Loss
                 </p>
 
                 <p
                   className={`mt-2 text-2xl font-bold ${
                     netProfit >= 0
-                      ? "text-emerald-400"
-                      : "text-rose-400"
+                      ? "text-emerald-600"
+                      : "text-rose-500"
                   }`}
                 >
                   {formatCurrency(
@@ -1260,90 +1277,106 @@ export default function AccountingPage() {
                 </p>
               </div>
 
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#C6752B]/10">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#FDE8E8]">
                 <Wallet
                   size={21}
-                  className="text-[#D98A3D]"
+                  className="text-[#EF4B4B]"
                 />
               </div>
+
             </div>
 
-            <p className="mt-3 text-xs text-zinc-500">
+            <p className="mt-3 text-xs text-[#9A9DA3]">
               Income minus expenditure
             </p>
+
           </div>
 
           {/* TRANSACTIONS */}
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm transition hover:shadow-md">
+
             <div className="flex items-center justify-between">
+
               <div>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-[#737780]">
                   Transactions
                 </p>
 
-                <p className="mt-2 text-2xl font-bold">
+                <p className="mt-2 text-2xl font-bold text-[#25282D]">
                   {transactions.length}
                 </p>
               </div>
 
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-zinc-800">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#F5F6F8]">
                 <Receipt
                   size={21}
-                  className="text-zinc-400"
+                  className="text-[#737780]"
                 />
               </div>
+
             </div>
 
-            <p className="mt-3 text-xs text-zinc-500">
+            <p className="mt-3 text-xs text-[#9A9DA3]">
               Recorded financial entries
             </p>
+
           </div>
+
         </div>
 
         {/* ==================================================
             LEDGER
         ================================================== */}
 
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900">
+        <div className="rounded-xl border border-[#E8E9ED] bg-white shadow-sm">
+
           {/* LEDGER HEADER */}
 
-          <div className="border-b border-zinc-800 p-6">
+          <div className="border-b border-[#E8E9ED] p-6">
+
             <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
+
               <div>
+
                 <div className="flex flex-wrap items-center gap-3">
-                  <h3 className="text-xl font-semibold">
+
+                  <h3 className="text-xl font-semibold text-[#25282D]">
                     General Ledger
                   </h3>
 
                   {monthFilter !==
                     "all" && (
-                    <span className="rounded-full border border-[#C6752B]/30 bg-[#C6752B]/10 px-3 py-1 text-xs font-medium text-[#D98A3D]">
+                    <span className="rounded-full border border-[#F4CACA] bg-[#FFF3F3] px-3 py-1 text-xs font-medium text-[#EF4B4B]">
                       {formatMonthLabel(
                         monthFilter
                       )}
                     </span>
                   )}
+
                 </div>
 
-                <p className="mt-1 text-sm text-zinc-500">
+                <p className="mt-1 text-sm text-[#8A8D94]">
                   {dateFilter !== "all"
                     ? `Transactions for ${formatDate(dateFilter)}.`
                     : monthFilter !== "all"
                       ? `Transactions for ${formatMonthLabel(monthFilter)}.`
                       : "Complete financial record of your fleet."}
                 </p>
+
               </div>
 
               {/* FILTERS */}
 
               <div className="flex flex-col gap-3 md:flex-row md:flex-wrap">
+
                 {/* SEARCH */}
 
                 <div className="relative">
+
                   <Search
                     size={17}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9A9DA3]"
                   />
 
                   <input
@@ -1355,17 +1388,21 @@ export default function AccountingPage() {
                       )
                     }
                     placeholder="Search transactions..."
-                    className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-2.5 pl-10 pr-4 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-[#C6752B] md:w-64"
+                    className="w-full rounded-lg border border-[#E1E3E7] bg-white py-2.5 pl-10 pr-4 text-sm text-[#25282D] outline-none placeholder:text-[#A5A8AE] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10 md:w-64"
                   />
+
                 </div>
 
                 {/* DATE / CALENDAR */}
 
                 <div className="flex items-center gap-2">
-                  <label className="flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2.5 focus-within:border-[#C6752B]">
-                    <span className="text-xs font-medium text-zinc-500">
+
+                  <label className="flex items-center gap-2 rounded-lg border border-[#E1E3E7] bg-white px-3 py-2.5 focus-within:border-[#EF4B4B] focus-within:ring-2 focus-within:ring-[#EF4B4B]/10">
+
+                    <span className="text-xs font-medium text-[#8A8D94]">
                       Date
                     </span>
+
                     <input
                       type="date"
                       value={
@@ -1375,13 +1412,15 @@ export default function AccountingPage() {
                       }
                       onChange={(event) =>
                         setDateFilter(
-                          event.target.value || "all"
+                          event.target.value ||
+                            "all"
                         )
                       }
-                      className="bg-transparent text-sm text-white outline-none [color-scheme:dark]"
+                      className="bg-transparent text-sm text-[#25282D] outline-none [color-scheme:light]"
                       aria-label="Filter by date"
                       title="Choose a specific date"
                     />
+
                   </label>
 
                   {dateFilter !== "all" && (
@@ -1390,20 +1429,24 @@ export default function AccountingPage() {
                       onClick={() =>
                         setDateFilter("all")
                       }
-                      className="rounded-lg border border-zinc-700 px-3 py-2.5 text-xs font-medium text-zinc-400 transition hover:bg-zinc-800 hover:text-white"
+                      className="rounded-lg border border-[#E1E3E7] bg-white px-3 py-2.5 text-xs font-medium text-[#737780] transition hover:border-[#EF4B4B] hover:bg-[#FFF7F7] hover:text-[#EF4B4B]"
                     >
                       All dates
                     </button>
                   )}
+
                 </div>
 
                 {/* MONTH */}
 
                 <div className="flex items-center gap-2">
-                  <label className="flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2.5 focus-within:border-[#C6752B]">
-                    <span className="text-xs font-medium text-zinc-500">
+
+                  <label className="flex items-center gap-2 rounded-lg border border-[#E1E3E7] bg-white px-3 py-2.5 focus-within:border-[#EF4B4B] focus-within:ring-2 focus-within:ring-[#EF4B4B]/10">
+
+                    <span className="text-xs font-medium text-[#8A8D94]">
                       Month
                     </span>
+
                     <input
                       type="month"
                       value={
@@ -1413,13 +1456,15 @@ export default function AccountingPage() {
                       }
                       onChange={(event) =>
                         setMonthFilter(
-                          event.target.value || "all"
+                          event.target.value ||
+                            "all"
                         )
                       }
-                      className="bg-transparent text-sm text-white outline-none [color-scheme:dark]"
+                      className="bg-transparent text-sm text-[#25282D] outline-none [color-scheme:light]"
                       aria-label="Filter by month"
                       title="Choose any month"
                     />
+
                   </label>
 
                   {monthFilter !== "all" && (
@@ -1428,11 +1473,12 @@ export default function AccountingPage() {
                       onClick={() =>
                         setMonthFilter("all")
                       }
-                      className="rounded-lg border border-zinc-700 px-3 py-2.5 text-xs font-medium text-zinc-400 transition hover:bg-zinc-800 hover:text-white"
+                      className="rounded-lg border border-[#E1E3E7] bg-white px-3 py-2.5 text-xs font-medium text-[#737780] transition hover:border-[#EF4B4B] hover:bg-[#FFF7F7] hover:text-[#EF4B4B]"
                     >
                       All months
                     </button>
                   )}
+
                 </div>
 
                 {/* TYPE */}
@@ -1448,8 +1494,9 @@ export default function AccountingPage() {
                         | "expense"
                     )
                   }
-                  className="rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-sm text-white outline-none focus:border-[#C6752B]"
+                  className="rounded-lg border border-[#E1E3E7] bg-white px-4 py-2.5 text-sm text-[#25282D] outline-none focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                 >
+
                   <option value="all">
                     All transactions
                   </option>
@@ -1461,6 +1508,7 @@ export default function AccountingPage() {
                   <option value="expense">
                     Expenditure
                   </option>
+
                 </select>
 
                 {/* VEHICLE */}
@@ -1472,8 +1520,9 @@ export default function AccountingPage() {
                       event.target.value
                     )
                   }
-                  className="rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-sm text-white outline-none focus:border-[#C6752B]"
+                  className="rounded-lg border border-[#E1E3E7] bg-white px-4 py-2.5 text-sm text-[#25282D] outline-none focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10"
                 >
+
                   <option value="all">
                     All lorries
                   </option>
@@ -1492,26 +1541,32 @@ export default function AccountingPage() {
                       </option>
                     )
                   )}
+
                 </select>
+
               </div>
+
             </div>
+
           </div>
 
           {/* TABLE */}
 
           {filteredTransactions.length ===
           0 ? (
+
             <div className="p-12 text-center">
+
               <Receipt
                 size={40}
-                className="mx-auto text-zinc-600"
+                className="mx-auto text-[#C5C8CD]"
               />
 
-              <h4 className="mt-4 font-semibold">
+              <h4 className="mt-4 font-semibold text-[#25282D]">
                 No transactions found
               </h4>
 
-              <p className="mt-2 text-sm text-zinc-500">
+              <p className="mt-2 text-sm text-[#8A8D94]">
                 There are no accounting
                 entries matching your
                 filters.
@@ -1519,17 +1574,24 @@ export default function AccountingPage() {
 
               <Link
                 href="/transactions/add"
-                className="mx-auto mt-6 inline-flex items-center gap-2 rounded-lg bg-[#C6752B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#A85F20]"
+                className="mx-auto mt-6 inline-flex items-center gap-2 rounded-lg bg-[#EF4B4B] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#D93B3B]"
               >
                 <Plus size={17} />
                 Add Transaction
               </Link>
+
             </div>
+
           ) : (
+
             <div className="overflow-x-auto">
+
               <table className="w-full min-w-[1200px] text-left">
-                <thead className="border-b border-zinc-800 bg-zinc-950/50">
-                  <tr className="text-xs uppercase tracking-wide text-zinc-500">
+
+                <thead className="border-b border-[#E8E9ED] bg-[#FAFAFB]">
+
+                  <tr className="text-xs uppercase tracking-wide text-[#8A8D94]">
+
                     <th className="px-6 py-4 font-medium">
                       Date
                     </th>
@@ -1561,12 +1623,16 @@ export default function AccountingPage() {
                     <th className="px-6 py-4 text-right font-medium">
                       Actions
                     </th>
+
                   </tr>
+
                 </thead>
 
                 <tbody>
+
                   {filteredTransactions.map(
                     (transaction) => {
+
                       const vehicle =
                         getVehicle(
                           transaction.vehicle
@@ -1581,15 +1647,17 @@ export default function AccountingPage() {
                         transaction.id
 
                       return (
+
                         <tr
                           key={
                             transaction.id
                           }
-                          className="border-b border-zinc-800 last:border-0 transition hover:bg-zinc-800/30"
+                          className="border-b border-[#E8E9ED] last:border-0 transition hover:bg-[#FFF9F9]"
                         >
+
                           {/* DATE */}
 
-                          <td className="whitespace-nowrap px-6 py-5 text-sm text-zinc-400">
+                          <td className="whitespace-nowrap px-6 py-5 text-sm text-[#737780]">
                             {formatDate(
                               transaction.date
                             )}
@@ -1598,38 +1666,49 @@ export default function AccountingPage() {
                           {/* PARTICULARS */}
 
                           <td className="px-6 py-5">
+
                             <div className="flex items-center gap-3">
+
                               {transaction.type ===
                               "income" ? (
+
                                 <ArrowUpCircle
                                   size={18}
-                                  className="text-emerald-400"
+                                  className="text-emerald-600"
                                 />
+
                               ) : (
+
                                 <ArrowDownCircle
                                   size={18}
-                                  className="text-rose-400"
+                                  className="text-rose-500"
                                 />
+
                               )}
 
                               <div>
-                                <p className="text-sm font-medium text-white">
+
+                                <p className="text-sm font-medium text-[#25282D]">
                                   {transaction.note ||
                                     "No description"}
                                 </p>
 
-                                <p className="mt-1 text-xs text-zinc-600">
+                                <p className="mt-1 text-xs text-[#A0A3A8]">
                                   Fleet financial
                                   transaction
                                 </p>
+
                               </div>
+
                             </div>
+
                           </td>
 
                           {/* REFERENCE */}
 
                           <td className="px-6 py-5">
-                            <span className="rounded-md bg-zinc-800 px-2.5 py-1 font-mono text-xs text-zinc-400">
+
+                            <span className="rounded-md bg-[#F5F6F8] px-2.5 py-1 font-mono text-xs text-[#737780]">
                               TXN-
                               {String(
                                 transaction.id
@@ -1638,63 +1717,84 @@ export default function AccountingPage() {
                                 "0"
                               )}
                             </span>
+
                           </td>
 
                           {/* LORRY */}
 
                           <td className="px-6 py-5">
+
                             <div className="flex items-center gap-2">
+
                               <Truck
                                 size={16}
-                                className="text-zinc-500"
+                                className="text-[#9A9DA3]"
                               />
 
                               <div>
-                                <p className="text-sm font-medium">
+
+                                <p className="text-sm font-medium text-[#25282D]">
                                   {vehicle?.registration_number ||
                                     "Unknown"}
                                 </p>
 
                                 {vehicle?.driver_name && (
-                                  <p className="text-xs text-zinc-600">
+                                  <p className="text-xs text-[#A0A3A8]">
                                     {
                                       vehicle.driver_name
                                     }
                                   </p>
                                 )}
+
                               </div>
+
                             </div>
+
                           </td>
 
                           {/* CATEGORY */}
 
                           <td className="px-6 py-5">
-                            <span className="rounded-md bg-zinc-800 px-2.5 py-1 text-xs text-zinc-300">
+
+                            <span className="rounded-md bg-[#F5F6F8] px-2.5 py-1 text-xs text-[#5E6268]">
                               {getCategory(
                                 transaction
                               )}
                             </span>
+
                           </td>
 
                           {/* TYPE */}
 
                           <td className="px-6 py-5">
+
                             {transaction.type ===
                             "income" ? (
-                              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">
+
+                              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+
                                 <ArrowUpCircle
                                   size={14}
                                 />
+
                                 Income
+
                               </span>
+
                             ) : (
-                              <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-500/20 bg-rose-500/10 px-3 py-1 text-xs font-medium text-rose-400">
+
+                              <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-medium text-rose-600">
+
                                 <ArrowDownCircle
                                   size={14}
                                 />
+
                                 Expenditure
+
                               </span>
+
                             )}
+
                           </td>
 
                           {/* AMOUNT */}
@@ -1703,24 +1803,30 @@ export default function AccountingPage() {
                             className={`whitespace-nowrap px-6 py-5 text-right text-sm font-bold ${
                               transaction.type ===
                               "income"
-                                ? "text-emerald-400"
-                                : "text-rose-400"
+                                ? "text-emerald-600"
+                                : "text-rose-500"
                             }`}
                           >
+
                             {transaction.type ===
                             "income"
                               ? "+"
-                              : "-"}{" "}
+                              : "-"}
+
+                            {" "}
+
                             {formatCurrency(
                               Number(
                                 transaction.amount
                               )
                             )}
+
                           </td>
 
                           {/* ACTION MENU */}
 
                           <td className="px-6 py-5 text-right">
+
                             <div
                               className="relative inline-block"
                               ref={
@@ -1729,6 +1835,7 @@ export default function AccountingPage() {
                                   : null
                               }
                             >
+
                               <button
                                 type="button"
                                 onClick={() =>
@@ -1741,23 +1848,31 @@ export default function AccountingPage() {
                                 disabled={
                                   isDeleting
                                 }
-                                className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900 text-zinc-400 transition hover:border-zinc-600 hover:bg-zinc-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E1E3E7] bg-white text-[#737780] transition hover:border-[#EF4B4B] hover:bg-[#FFF7F7] hover:text-[#EF4B4B] disabled:cursor-not-allowed disabled:opacity-50"
                                 title="Transaction options"
                               >
+
                                 {isDeleting ? (
+
                                   <Loader2
                                     size={17}
                                     className="animate-spin"
                                   />
+
                                 ) : (
+
                                   <MoreVertical
                                     size={18}
                                   />
+
                                 )}
+
                               </button>
 
                               {isMenuOpen && (
-                                <div className="absolute right-0 top-11 z-50 w-48 overflow-hidden rounded-xl border border-zinc-700 bg-zinc-900 p-1.5 text-left shadow-2xl shadow-black/40">
+
+                                <div className="absolute right-0 top-11 z-50 w-48 overflow-hidden rounded-xl border border-[#E1E3E7] bg-white p-1.5 text-left shadow-xl shadow-black/10">
+
                                   {/* EDIT */}
 
                                   <Link
@@ -1767,16 +1882,18 @@ export default function AccountingPage() {
                                         null
                                       )
                                     }
-                                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+                                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-[#4B4F55] transition hover:bg-[#FFF3F3] hover:text-[#EF4B4B]"
                                   >
+
                                     <Pencil
                                       size={16}
-                                      className="text-[#D98A3D]"
+                                      className="text-[#EF4B4B]"
                                     />
 
                                     <span>
                                       Edit transaction
                                     </span>
+
                                   </Link>
 
                                   {/* DELETE */}
@@ -1788,68 +1905,83 @@ export default function AccountingPage() {
                                         transaction
                                       )
                                     }
-                                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-zinc-300 transition hover:bg-rose-500/10 hover:text-rose-400"
+                                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-[#4B4F55] transition hover:bg-rose-50 hover:text-rose-600"
                                   >
+
                                     <Trash2
                                       size={16}
-                                      className="text-rose-400"
+                                      className="text-rose-500"
                                     />
 
                                     <span>
                                       Delete transaction
                                     </span>
+
                                   </button>
+
                                 </div>
+
                               )}
+
                             </div>
+
                           </td>
+
                         </tr>
+
                       )
                     }
                   )}
+
                 </tbody>
 
                 {/* LEDGER TOTALS */}
 
-                <tfoot className="border-t-2 border-zinc-700 bg-zinc-950">
+                <tfoot className="border-t-2 border-[#E1E3E7] bg-[#FAFAFB]">
+
                   <tr>
+
                     <td
                       colSpan={6}
-                      className="px-6 py-4 text-right text-sm font-semibold text-zinc-400"
+                      className="px-6 py-4 text-right text-sm font-semibold text-[#737780]"
                     >
                       Total Income
                     </td>
 
-                    <td className="px-6 py-4 text-right text-sm font-bold text-emerald-400">
+                    <td className="px-6 py-4 text-right text-sm font-bold text-emerald-600">
                       {formatCurrency(
                         filteredIncome
                       )}
                     </td>
 
                     <td />
+
                   </tr>
 
                   <tr>
+
                     <td
                       colSpan={6}
-                      className="px-6 py-4 text-right text-sm font-semibold text-zinc-400"
+                      className="px-6 py-4 text-right text-sm font-semibold text-[#737780]"
                     >
                       Total Expenditure
                     </td>
 
-                    <td className="px-6 py-4 text-right text-sm font-bold text-rose-400">
+                    <td className="px-6 py-4 text-right text-sm font-bold text-rose-500">
                       {formatCurrency(
                         filteredExpenses
                       )}
                     </td>
 
                     <td />
+
                   </tr>
 
-                  <tr className="border-t border-zinc-800">
+                  <tr className="border-t border-[#E8E9ED]">
+
                     <td
                       colSpan={6}
-                      className="px-6 py-5 text-right text-base font-bold text-white"
+                      className="px-6 py-5 text-right text-base font-bold text-[#25282D]"
                     >
                       Ledger Balance
                     </td>
@@ -1858,8 +1990,8 @@ export default function AccountingPage() {
                       className={`px-6 py-5 text-right text-base font-bold ${
                         filteredBalance >=
                         0
-                          ? "text-emerald-400"
-                          : "text-rose-400"
+                          ? "text-emerald-600"
+                          : "text-rose-500"
                       }`}
                     >
                       {formatCurrency(
@@ -1868,18 +2000,26 @@ export default function AccountingPage() {
                     </td>
 
                     <td />
+
                   </tr>
+
                 </tfoot>
+
               </table>
+
             </div>
+
           )}
+
         </div>
 
         {/* LEDGER FOOTNOTE */}
 
         {filteredTransactions.length >
           0 && (
-          <div className="mt-4 flex items-center justify-between text-xs text-zinc-600">
+
+          <div className="mt-4 flex items-center justify-between text-xs text-[#9A9DA3]">
+
             <span>
               Showing{" "}
               {filteredTransactions.length}{" "}
@@ -1892,6 +2032,7 @@ export default function AccountingPage() {
               vehicleFilter !== "all" ||
               monthFilter !== "all" ||
               dateFilter !== "all") && (
+
               <button
                 onClick={() => {
                   setSearch("")
@@ -1902,13 +2043,17 @@ export default function AccountingPage() {
                   setMonthFilter("all")
                   setDateFilter("all")
                 }}
-                className="text-[#D98A3D] transition hover:text-[#E8A85C]"
+                className="font-medium text-[#EF4B4B] transition hover:text-[#D93B3B]"
               >
                 Clear filters
               </button>
+
             )}
+
           </div>
+
         )}
+
       </section>
 
       {/* ==================================================
@@ -1916,56 +2061,67 @@ export default function AccountingPage() {
       ================================================== */}
 
       {deleteTarget && (
+
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 px-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#25282D]/40 px-4 backdrop-blur-sm"
           onMouseDown={(event) => {
+
             if (
               event.target ===
               event.currentTarget
             ) {
+
               if (
                 deletingId === null
               ) {
                 setDeleteTarget(null)
               }
+
             }
+
           }}
         >
+
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="delete-dialog-title"
-            className="w-full max-w-md overflow-hidden rounded-2xl border border-zinc-700 bg-zinc-900 shadow-2xl shadow-black/60"
+            className="w-full max-w-md overflow-hidden rounded-2xl border border-[#E1E3E7] bg-white shadow-2xl shadow-black/20"
           >
+
             {/* TOP ACCENT */}
 
-            <div className="h-1 bg-gradient-to-r from-rose-600 via-rose-500 to-[#D98A3D]" />
+            <div className="h-1 bg-[#EF4B4B]" />
 
             <div className="p-6">
+
               {/* HEADER */}
 
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-rose-500/20 bg-rose-500/10">
+
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-rose-200 bg-rose-50">
                   <Trash2
                     size={22}
-                    className="text-rose-400"
+                    className="text-rose-500"
                   />
                 </div>
 
                 <div className="min-w-0 flex-1">
+
                   <h3
                     id="delete-dialog-title"
-                    className="text-lg font-semibold text-white"
+                    className="text-lg font-semibold text-[#25282D]"
                   >
                     Delete transaction?
                   </h3>
 
-                  <p className="mt-1 text-sm leading-6 text-zinc-400">
+                  <p className="mt-1 text-sm leading-6 text-[#737780]">
                     This transaction will
                     be permanently removed
                     from your accounting
                     records.
                   </p>
+
                 </div>
 
                 {/* CLOSE */}
@@ -1973,46 +2129,53 @@ export default function AccountingPage() {
                 <button
                   type="button"
                   onClick={() => {
+
                     if (
                       deletingId === null
                     ) {
                       setDeleteTarget(null)
                     }
+
                   }}
                   disabled={
                     deletingId !== null
                   }
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-zinc-500 transition hover:bg-zinc-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#9A9DA3] transition hover:bg-[#F5F6F8] hover:text-[#25282D] disabled:cursor-not-allowed disabled:opacity-50"
                   aria-label="Close"
                 >
                   <X size={18} />
                 </button>
+
               </div>
 
               {/* TRANSACTION PREVIEW */}
 
-              <div className="mt-5 rounded-xl border border-zinc-800 bg-zinc-950/70 p-4">
+              <div className="mt-5 rounded-xl border border-[#E8E9ED] bg-[#FAFAFB] p-4">
+
                 <div className="flex items-center justify-between gap-4">
+
                   <div className="min-w-0">
-                    <p className="font-mono text-xs text-zinc-500">
+
+                    <p className="font-mono text-xs text-[#9A9DA3]">
                       TXN-
                       {String(
                         deleteTarget.id
                       ).padStart(5, "0")}
                     </p>
 
-                    <p className="mt-1 truncate text-sm font-medium text-white">
+                    <p className="mt-1 truncate text-sm font-medium text-[#25282D]">
                       {deleteTarget.note ||
                         "No description"}
                     </p>
+
                   </div>
 
                   <p
                     className={`shrink-0 text-sm font-bold ${
                       deleteTarget.type ===
                       "income"
-                        ? "text-emerald-400"
-                        : "text-rose-400"
+                        ? "text-emerald-600"
+                        : "text-rose-500"
                     }`}
                   >
                     {deleteTarget.type ===
@@ -2025,10 +2188,12 @@ export default function AccountingPage() {
                       )
                     )}
                   </p>
+
                 </div>
 
-                <div className="mt-3 flex items-center justify-between border-t border-zinc-800 pt-3 text-xs">
-                  <span className="text-zinc-600">
+                <div className="mt-3 flex items-center justify-between border-t border-[#E8E9ED] pt-3 text-xs">
+
+                  <span className="text-[#9A9DA3]">
                     {formatDate(
                       deleteTarget.date
                     )}
@@ -2038,8 +2203,8 @@ export default function AccountingPage() {
                     className={
                       deleteTarget.type ===
                       "income"
-                        ? "text-emerald-400"
-                        : "text-rose-400"
+                        ? "text-emerald-600"
+                        : "text-rose-500"
                     }
                   >
                     {deleteTarget.type ===
@@ -2047,33 +2212,41 @@ export default function AccountingPage() {
                       ? "Income"
                       : "Expenditure"}
                   </span>
+
                 </div>
+
               </div>
 
               {/* WARNING */}
 
-              <div className="mt-4 flex gap-3 rounded-xl border border-amber-500/10 bg-amber-500/5 p-3.5">
+              <div className="mt-4 flex gap-3 rounded-xl border border-amber-200 bg-amber-50 p-3.5">
+
                 <AlertTriangle
                   size={17}
-                  className="mt-0.5 shrink-0 text-amber-400"
+                  className="mt-0.5 shrink-0 text-amber-500"
                 />
 
-                <p className="text-xs leading-5 text-zinc-500">
+                <p className="text-xs leading-5 text-[#737780]">
+
                   Deleting this entry will
                   also remove it from your
                   accounting totals and
                   reports.
-                  <span className="font-medium text-zinc-300">
+
+                  <span className="font-medium text-[#4B4F55]">
                     {" "}
                     This action cannot be
                     undone.
                   </span>
+
                 </p>
+
               </div>
 
               {/* ACTIONS */}
 
               <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+
                 <button
                   type="button"
                   onClick={() =>
@@ -2082,7 +2255,7 @@ export default function AccountingPage() {
                   disabled={
                     deletingId !== null
                   }
-                  className="rounded-xl border border-zinc-700 px-5 py-2.5 text-sm font-semibold text-zinc-300 transition hover:border-zinc-600 hover:bg-zinc-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-xl border border-[#E1E3E7] bg-white px-5 py-2.5 text-sm font-semibold text-[#4B4F55] transition hover:border-[#C5C8CD] hover:bg-[#F5F6F8] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Cancel
                 </button>
@@ -2094,10 +2267,12 @@ export default function AccountingPage() {
                     deletingId ===
                     deleteTarget.id
                   }
-                  className="flex items-center justify-center gap-2 rounded-xl bg-rose-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-500 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-rose-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-60"
                 >
+
                   {deletingId ===
                   deleteTarget.id ? (
+
                     <>
                       <Loader2
                         size={16}
@@ -2106,18 +2281,27 @@ export default function AccountingPage() {
 
                       Deleting...
                     </>
+
                   ) : (
+
                     <>
                       <Trash2 size={16} />
 
                       Delete transaction
                     </>
+
                   )}
+
                 </button>
+
               </div>
+
             </div>
+
           </div>
+
         </div>
+
       )}
 
       {/* ==================================================
@@ -2125,13 +2309,17 @@ export default function AccountingPage() {
       ================================================== */}
 
       <section className="statement hidden print:block">
+
         <div className="statement-header">
+
           <div className="statement-brand">
+
             <div className="statement-mark">
               FF
             </div>
 
             <div>
+
               <p className="statement-company">
                 {COMPANY_NAME}
               </p>
@@ -2139,10 +2327,13 @@ export default function AccountingPage() {
               <p className="statement-tagline">
                 Fleet Accounting Statement
               </p>
+
             </div>
+
           </div>
 
           <div className="statement-meta">
+
             <p>
               <span>Period</span>
 
@@ -2168,11 +2359,15 @@ export default function AccountingPage() {
                   new Date()
               )}
             </p>
+
           </div>
+
         </div>
 
         <div className="statement-summary">
+
           <div>
+
             <p className="label">
               Total Income
             </p>
@@ -2182,9 +2377,11 @@ export default function AccountingPage() {
                 filteredIncome
               )}
             </p>
+
           </div>
 
           <div>
+
             <p className="label">
               Total Expenditure
             </p>
@@ -2194,9 +2391,11 @@ export default function AccountingPage() {
                 filteredExpenses
               )}
             </p>
+
           </div>
 
           <div>
+
             <p className="label">
               Net Balance
             </p>
@@ -2212,12 +2411,17 @@ export default function AccountingPage() {
                 filteredBalance
               )}
             </p>
+
           </div>
+
         </div>
 
         <table className="statement-table">
+
           <thead>
+
             <tr>
+
               <th>Date</th>
 
               <th>Particulars</th>
@@ -2233,23 +2437,29 @@ export default function AccountingPage() {
               <th className="align-right">
                 Amount (KES)
               </th>
+
             </tr>
+
           </thead>
 
           <tbody>
+
             {filteredTransactions.map(
               (transaction) => {
+
                 const vehicle =
                   getVehicle(
                     transaction.vehicle
                   )
 
                 return (
+
                   <tr
                     key={
                       transaction.id
                     }
                   >
+
                     <td>
                       {formatDate(
                         transaction.date
@@ -2269,6 +2479,7 @@ export default function AccountingPage() {
                     </td>
 
                     <td>
+
                       {vehicle?.registration_number ||
                         "Unknown"}
 
@@ -2279,6 +2490,7 @@ export default function AccountingPage() {
                           }
                         </span>
                       )}
+
                     </td>
 
                     <td>
@@ -2302,6 +2514,7 @@ export default function AccountingPage() {
                           : "expense"
                       }`}
                     >
+
                       {transaction.type ===
                       "income"
                         ? "+"
@@ -2315,15 +2528,21 @@ export default function AccountingPage() {
                         "KES ",
                         ""
                       )}
+
                     </td>
+
                   </tr>
+
                 )
               }
             )}
+
           </tbody>
 
           <tfoot>
+
             <tr>
+
               <td colSpan={6}>
                 Total Income
               </td>
@@ -2333,9 +2552,11 @@ export default function AccountingPage() {
                   filteredIncome
                 )}
               </td>
+
             </tr>
 
             <tr>
+
               <td colSpan={6}>
                 Total Expenditure
               </td>
@@ -2345,9 +2566,11 @@ export default function AccountingPage() {
                   filteredExpenses
                 )}
               </td>
+
             </tr>
 
             <tr className="statement-balance-row">
+
               <td colSpan={6}>
                 Net Balance
               </td>
@@ -2363,11 +2586,15 @@ export default function AccountingPage() {
                   filteredBalance
                 )}
               </td>
+
             </tr>
+
           </tfoot>
+
         </table>
 
         <div className="statement-footer">
+
           <p>
             This is a system-generated
             statement from{" "}
@@ -2375,7 +2602,9 @@ export default function AccountingPage() {
             management platform and
             requires no signature.
           </p>
+
         </div>
+
       </section>
 
       {/* ==================================================
@@ -2383,13 +2612,14 @@ export default function AccountingPage() {
       ================================================== */}
 
       <style jsx global>{`
+
         :root {
           --paper: #fbfaf7;
-          --ink: #201c18;
-          --ink-muted: #7a7267;
+          --ink: #25282d;
+          --ink-muted: #737780;
           --hairline: #e6e1d8;
-          --copper: #b5661f;
-          --copper-deep: #7a4a18;
+          --coral: #ef4b4b;
+          --coral-deep: #d93b3b;
           --income: #2f7d5c;
           --expense: #a8442f;
         }
@@ -2401,6 +2631,7 @@ export default function AccountingPage() {
         }
 
         @media print {
+
           @page {
             size: A4;
             margin: 16mm 14mm;
@@ -2429,7 +2660,7 @@ export default function AccountingPage() {
             align-items: flex-start;
             justify-content: space-between;
             border-bottom: 1px solid
-              var(--copper);
+              var(--coral);
             padding-bottom: 16px;
             margin-bottom: 22px;
           }
@@ -2444,10 +2675,8 @@ export default function AccountingPage() {
             width: 42px;
             height: 42px;
             border-radius: 8px;
-            background: var(
-              --copper-deep
-            );
-            color: var(--paper);
+            background: var(--coral);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2547,7 +2776,7 @@ export default function AccountingPage() {
             background: transparent;
             padding: 0 8px 9px;
             border-bottom: 1px solid
-              var(--copper);
+              var(--coral);
             font-weight: 700;
           }
 
@@ -2591,7 +2820,7 @@ export default function AccountingPage() {
 
           .statement-balance-row td {
             border-top: 1px solid
-              var(--copper);
+              var(--coral);
             font-size: 12.5px;
             font-weight: 700;
             padding-top: 12px;
@@ -2616,8 +2845,11 @@ export default function AccountingPage() {
             color: var(--ink-muted);
             text-align: center;
           }
+
         }
+
       `}</style>
+
     </main>
   )
 }

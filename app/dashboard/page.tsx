@@ -154,19 +154,19 @@ const Dashboard = () => {
   const getStatusStyles = (status: string) => {
     switch (status) {
       case "in_transit":
-        return "bg-[#C6752B]/10 text-[#D98A3D] border-[#C6752B]/20"
+        return "bg-[#EF4B4B]/10 text-[#D93B3B] border-[#EF4B4B]/20"
 
       case "loading":
-        return "bg-amber-500/10 text-amber-400 border-amber-500/20"
+        return "bg-amber-50 text-amber-600 border-amber-200"
 
       case "delivered":
-        return "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+        return "bg-emerald-50 text-emerald-600 border-emerald-200"
 
       case "returning":
-        return "bg-violet-500/10 text-violet-400 border-violet-500/20"
+        return "bg-violet-50 text-violet-600 border-violet-200"
 
       default:
-        return "bg-zinc-500/10 text-zinc-400 border-zinc-500/20"
+        return "bg-gray-100 text-[#737780] border-[#E8E9ED]"
     }
   }
 
@@ -177,24 +177,26 @@ const Dashboard = () => {
   }
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white">
+    <main className="min-h-screen bg-[#F5F6F8] text-[#25282D]">
+
       {/* HEADER */}
 
-      <header className="border-b border-zinc-800 bg-zinc-950">
+      <header className="border-b border-[#E8E9ED] bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 sm:py-5">
+
           {/* BRAND */}
 
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#C6752B]">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#EF4B4B] text-white">
               <Truck size={21} />
             </div>
 
             <div className="min-w-0">
-              <h1 className="text-lg font-bold">
-                Fan<span className="text-[#D98A3D]">A</span>Na
+              <h1 className="text-lg font-bold text-[#25282D]">
+                Fleet<span className="text-[#EF4B4B]">Flow</span>
               </h1>
 
-              <p className="hidden text-xs text-zinc-500 sm:block">
+              <p className="hidden text-xs text-[#737780] sm:block">
                 Fleet management
               </p>
             </div>
@@ -203,15 +205,16 @@ const Dashboard = () => {
           {/* HEADER ACTIONS */}
 
           <div className="flex items-center gap-2 sm:gap-3">
+
             {/* ACCOUNTING */}
 
             <Link
               href="/accounting"
-              className="group flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm font-semibold text-zinc-300 transition hover:border-[#C6752B]/30 hover:bg-[#C6752B]/10 hover:text-white sm:px-4"
+              className="group flex items-center gap-2 rounded-lg border border-[#E8E9ED] bg-white px-3 py-2 text-sm font-semibold text-[#737780] transition hover:border-[#EF4B4B]/30 hover:bg-[#EF4B4B]/5 hover:text-[#25282D] sm:px-4"
             >
               <Wallet
                 size={17}
-                className="text-zinc-500 transition group-hover:text-[#D98A3D]"
+                className="text-[#A0A3AA] transition group-hover:text-[#EF4B4B]"
               />
 
               <span className="hidden sm:inline">
@@ -223,7 +226,7 @@ const Dashboard = () => {
 
             <Link
               href="/new"
-              className="flex items-center gap-2 rounded-lg bg-[#C6752B] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#A85F20] sm:px-4"
+              className="flex items-center gap-2 rounded-lg bg-[#EF4B4B] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#D93B3B] sm:px-4"
             >
               <Plus size={17} />
 
@@ -240,18 +243,19 @@ const Dashboard = () => {
       </header>
 
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
+
         {/* PAGE INTRO */}
 
         <div className="mb-8">
-          <p className="text-sm font-medium text-[#D98A3D]">
+          <p className="text-sm font-medium text-[#EF4B4B]">
             Overview
           </p>
 
-          <h2 className="mt-2 text-3xl font-bold">
+          <h2 className="mt-2 text-3xl font-bold text-[#25282D]">
             Your Fleet
           </h2>
 
-          <p className="mt-2 max-w-2xl text-zinc-400">
+          <p className="mt-2 max-w-2xl text-[#737780]">
             Keep track of your lorries and their current operations.
           </p>
         </div>
@@ -259,64 +263,65 @@ const Dashboard = () => {
         {/* BASIC FLEET STATS */}
 
         <div className="mb-5 grid gap-5 md:grid-cols-3">
+
           {/* TOTAL LORRIES */}
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
-            <p className="text-sm text-zinc-400">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm">
+            <p className="text-sm text-[#737780]">
               Total lorries
             </p>
 
-            <p className="mt-2 text-3xl font-bold">
+            <p className="mt-2 text-3xl font-bold text-[#25282D]">
               {vehicles.length}
             </p>
 
-            <p className="mt-1 text-xs text-zinc-500">
+            <p className="mt-1 text-xs text-[#A0A3AA]">
               Currently in your active fleet
             </p>
           </div>
 
           {/* CURRENTLY ACTIVE */}
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
-            <p className="text-sm text-zinc-400">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm">
+            <p className="text-sm text-[#737780]">
               Currently active
             </p>
 
-            <p className="mt-2 text-3xl font-bold">
+            <p className="mt-2 text-3xl font-bold text-[#25282D]">
               {activeVehicles}
             </p>
 
-            <p className="mt-1 text-xs text-zinc-500">
+            <p className="mt-1 text-xs text-[#A0A3AA]">
               Loading or in transit
             </p>
           </div>
 
           {/* ARCHIVED LORRIES */}
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm">
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-[#737780]">
                   Archived lorries
                 </p>
 
-                <p className="mt-2 text-3xl font-bold">
+                <p className="mt-2 text-3xl font-bold text-[#25282D]">
                   {archivedVehicles.length}
                 </p>
 
-                <p className="mt-1 text-xs text-zinc-500">
+                <p className="mt-1 text-xs text-[#A0A3AA]">
                   Removed from active fleet
                 </p>
               </div>
 
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 text-zinc-400">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#F5F6F8] text-[#737780]">
                 <Archive size={19} />
               </div>
             </div>
 
             <Link
               href="/archive"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#D98A3D] transition hover:text-[#E8A85C]"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#EF4B4B] transition hover:text-[#D93B3B]"
             >
               View archive
               <ArrowRight size={15} />
@@ -327,56 +332,57 @@ const Dashboard = () => {
         {/* FLEET FINANCIAL OVERVIEW */}
 
         <div className="mb-10 grid gap-5 md:grid-cols-2">
+
           {/* TOTAL INCOME */}
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-[#737780]">
                   Total income
                 </p>
 
-                <p className="mt-2 text-2xl font-bold text-emerald-400">
+                <p className="mt-2 text-2xl font-bold text-emerald-600">
                   {formatCurrency(totalIncome)}
                 </p>
               </div>
 
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-500/10">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-50">
                 <TrendingUp
                   size={21}
-                  className="text-emerald-400"
+                  className="text-emerald-600"
                 />
               </div>
             </div>
 
-            <p className="mt-3 text-xs text-zinc-500">
+            <p className="mt-3 text-xs text-[#A0A3AA]">
               Income from all vehicles
             </p>
           </div>
 
           {/* TOTAL EXPENSES */}
 
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-[#737780]">
                   Total expenses
                 </p>
 
-                <p className="mt-2 text-2xl font-bold text-rose-400">
+                <p className="mt-2 text-2xl font-bold text-rose-600">
                   {formatCurrency(totalExpenses)}
                 </p>
               </div>
 
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-rose-500/10">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-rose-50">
                 <TrendingDown
                   size={21}
-                  className="text-rose-400"
+                  className="text-rose-600"
                 />
               </div>
             </div>
 
-            <p className="mt-3 text-xs text-zinc-500">
+            <p className="mt-3 text-xs text-[#A0A3AA]">
               Expenses from all vehicles
             </p>
           </div>
@@ -384,30 +390,30 @@ const Dashboard = () => {
 
         {/* FLEET BALANCE */}
 
-        <div className="mb-10 flex flex-col gap-5 rounded-xl border border-zinc-800 bg-zinc-900 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mb-10 flex flex-col gap-5 rounded-xl border border-[#E8E9ED] bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-[#737780]">
               Fleet balance
             </p>
 
             <p
               className={`mt-2 text-2xl font-bold ${
                 fleetBalance >= 0
-                  ? "text-emerald-400"
-                  : "text-rose-400"
+                  ? "text-emerald-600"
+                  : "text-rose-600"
               }`}
             >
               {formatCurrency(fleetBalance)}
             </p>
 
-            <p className="mt-1 text-xs text-zinc-500">
+            <p className="mt-1 text-xs text-[#A0A3AA]">
               Income minus expenses across the fleet
             </p>
           </div>
 
           <Link
             href="/accounting"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-zinc-700 px-4 py-3 text-sm font-semibold text-zinc-300 transition hover:border-[#C6752B]/40 hover:bg-[#C6752B]/10 hover:text-[#D98A3D] sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#E8E9ED] px-4 py-3 text-sm font-semibold text-[#737780] transition hover:border-[#EF4B4B]/40 hover:bg-[#EF4B4B]/5 hover:text-[#EF4B4B] sm:w-auto"
           >
             View accounting
             <ArrowRight size={16} />
@@ -418,8 +424,11 @@ const Dashboard = () => {
 
         {loading && (
           <div className="flex min-h-75 items-center justify-center">
-            <div className="flex items-center gap-3 text-zinc-400">
-              <Loader2 className="animate-spin" size={20} />
+            <div className="flex items-center gap-3 text-[#737780]">
+              <Loader2
+                className="animate-spin text-[#EF4B4B]"
+                size={20}
+              />
               Loading your fleet...
             </div>
           </div>
@@ -428,7 +437,7 @@ const Dashboard = () => {
         {/* ERROR */}
 
         {!loading && error && (
-          <div className="rounded-xl border border-rose-500/20 bg-rose-500/10 p-6 text-center text-rose-400">
+          <div className="rounded-xl border border-rose-200 bg-rose-50 p-6 text-center text-rose-600">
             {error}
           </div>
         )}
@@ -436,23 +445,23 @@ const Dashboard = () => {
         {/* EMPTY FLEET */}
 
         {!loading && !error && vehicles.length === 0 && (
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-12 text-center">
+          <div className="rounded-xl border border-[#E8E9ED] bg-white p-12 text-center shadow-sm">
             <Truck
               size={40}
-              className="mx-auto text-zinc-600"
+              className="mx-auto text-[#A0A3AA]"
             />
 
-            <h3 className="mt-4 text-lg font-semibold">
+            <h3 className="mt-4 text-lg font-semibold text-[#25282D]">
               No vehicles yet
             </h3>
 
-            <p className="mt-2 text-sm text-zinc-500">
+            <p className="mt-2 text-sm text-[#737780]">
               Add your first lorry to start managing your fleet.
             </p>
 
             <Link
               href="/new"
-              className="mx-auto mt-6 inline-flex items-center gap-2 rounded-lg bg-[#C6752B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#A85F20]"
+              className="mx-auto mt-6 inline-flex items-center gap-2 rounded-lg bg-[#EF4B4B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#D93B3B]"
             >
               <Plus size={17} />
               Add Your First Lorry
@@ -465,18 +474,18 @@ const Dashboard = () => {
         {!loading && !error && vehicles.length > 0 && (
           <div>
             <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <h3 className="text-xl font-semibold">
+              <h3 className="text-xl font-semibold text-[#25282D]">
                 All vehicles
               </h3>
 
               <div className="flex items-center justify-between gap-4 sm:justify-end">
-                <span className="text-sm text-zinc-500">
+                <span className="text-sm text-[#737780]">
                   {vehicles.length} vehicles
                 </span>
 
                 <Link
                   href="/new"
-                  className="flex items-center gap-2 rounded-lg border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+                  className="flex items-center gap-2 rounded-lg border border-[#E8E9ED] bg-white px-4 py-2 text-sm font-medium text-[#737780] transition hover:border-[#EF4B4B]/30 hover:bg-[#EF4B4B]/5 hover:text-[#25282D]"
                 >
                   <Plus size={16} />
                   Add Lorry
@@ -488,17 +497,18 @@ const Dashboard = () => {
               {vehicles.map((vehicle) => (
                 <div
                   key={vehicle.id}
-                  className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 transition hover:border-zinc-700 sm:p-6"
+                  className="rounded-xl border border-[#E8E9ED] bg-white p-5 shadow-sm transition hover:border-[#EF4B4B]/30 hover:shadow-md sm:p-6"
                 >
+
                   {/* VEHICLE HEADER */}
 
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <h4 className="text-xl font-bold">
+                      <h4 className="text-xl font-bold text-[#25282D]">
                         {vehicle.registration_number}
                       </h4>
 
-                      <p className="mt-1 truncate text-sm text-zinc-500">
+                      <p className="mt-1 truncate text-sm text-[#737780]">
                         {vehicle.driver_name}
                       </p>
                     </div>
@@ -515,18 +525,19 @@ const Dashboard = () => {
                   {/* VEHICLE DETAILS */}
 
                   <div className="mt-6 grid grid-cols-2 gap-5">
+
                     <div className="flex gap-3">
                       <Package
                         size={18}
-                        className="mt-0.5 shrink-0 text-zinc-500"
+                        className="mt-0.5 shrink-0 text-[#A0A3AA]"
                       />
 
                       <div className="min-w-0">
-                        <p className="text-xs text-zinc-500">
+                        <p className="text-xs text-[#737780]">
                           Cargo
                         </p>
 
-                        <p className="mt-1 truncate text-sm font-medium">
+                        <p className="mt-1 truncate text-sm font-medium text-[#25282D]">
                           {vehicle.cargo_type}
                         </p>
                       </div>
@@ -535,15 +546,15 @@ const Dashboard = () => {
                     <div className="flex gap-3">
                       <MapPin
                         size={18}
-                        className="mt-0.5 shrink-0 text-zinc-500"
+                        className="mt-0.5 shrink-0 text-[#A0A3AA]"
                       />
 
                       <div className="min-w-0">
-                        <p className="text-xs text-zinc-500">
+                        <p className="text-xs text-[#737780]">
                           Location
                         </p>
 
-                        <p className="mt-1 truncate text-sm font-medium">
+                        <p className="mt-1 truncate text-sm font-medium text-[#25282D]">
                           {vehicle.current_location}
                         </p>
                       </div>
@@ -552,15 +563,15 @@ const Dashboard = () => {
                     <div className="flex gap-3">
                       <MapPin
                         size={18}
-                        className="mt-0.5 shrink-0 text-zinc-500"
+                        className="mt-0.5 shrink-0 text-[#A0A3AA]"
                       />
 
                       <div className="min-w-0">
-                        <p className="text-xs text-zinc-500">
+                        <p className="text-xs text-[#737780]">
                           Destination
                         </p>
 
-                        <p className="mt-1 truncate text-sm font-medium">
+                        <p className="mt-1 truncate text-sm font-medium text-[#25282D]">
                           {vehicle.destination}
                         </p>
                       </div>
@@ -569,15 +580,15 @@ const Dashboard = () => {
                     <div className="flex gap-3">
                       <Fuel
                         size={18}
-                        className="mt-0.5 shrink-0 text-zinc-500"
+                        className="mt-0.5 shrink-0 text-[#A0A3AA]"
                       />
 
                       <div>
-                        <p className="text-xs text-zinc-500">
+                        <p className="text-xs text-[#737780]">
                           Fuel
                         </p>
 
-                        <p className="mt-1 text-sm font-medium">
+                        <p className="mt-1 text-sm font-medium text-[#25282D]">
                           {vehicle.fuel_level}%
                         </p>
                       </div>
@@ -586,13 +597,13 @@ const Dashboard = () => {
 
                   {/* MILEAGE */}
 
-                  <div className="mt-6 border-t border-zinc-800 pt-5">
+                  <div className="mt-6 border-t border-[#E8E9ED] pt-5">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-zinc-500">
+                      <span className="text-[#737780]">
                         Mileage
                       </span>
 
-                      <span className="font-medium">
+                      <span className="font-medium text-[#25282D]">
                         {vehicle.mileage} km
                       </span>
                     </div>
@@ -602,7 +613,7 @@ const Dashboard = () => {
 
                   <Link
                     href={`/vehicles/${vehicle.id}`}
-                    className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg border border-zinc-700 py-3 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+                    className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg border border-[#E8E9ED] py-3 text-sm font-semibold text-[#737780] transition hover:border-[#EF4B4B]/30 hover:bg-[#EF4B4B]/5 hover:text-[#EF4B4B]"
                   >
                     View details
                     <ArrowRight size={16} />

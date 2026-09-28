@@ -69,11 +69,10 @@ const Login = () => {
       // Show success toast
       setToast(true)
 
-      // Redirect to home after toast
+      // Redirect to dashboard after toast
       setTimeout(() => {
         window.location.href = "/dashboard"
       }, 1500)
-
     } catch (error) {
       console.error(error)
       setError("Unable to connect to the server. Please try again.")
@@ -83,22 +82,20 @@ const Login = () => {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-6 py-12 text-white">
-
+    <main className="flex min-h-screen items-center justify-center bg-[#F5F6F8] px-6 py-12 text-[#25282D]">
       {/* Success Toast */}
       {toast && (
-        <div className="fixed right-6 top-6 z-50 flex items-center gap-3 rounded-xl border border-emerald-500/20 bg-zinc-900 px-5 py-4 shadow-2xl animate-in slide-in-from-right-5 duration-300">
-
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
+        <div className="fixed right-6 top-6 z-50 flex items-center gap-3 rounded-xl border border-[#E8E9ED] bg-white px-5 py-4 shadow-xl animate-in slide-in-from-right-5 duration-300">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-500">
             <CheckCircle2 size={20} />
           </div>
 
           <div>
-            <p className="text-sm font-semibold text-white">
+            <p className="text-sm font-semibold text-[#25282D]">
               Welcome back
             </p>
 
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-[#737780]">
               Signing you in...
             </p>
           </div>
@@ -106,58 +103,55 @@ const Login = () => {
           <button
             type="button"
             onClick={() => setToast(false)}
-            className="ml-2 text-zinc-500 transition hover:text-zinc-300"
+            className="ml-2 text-[#A0A3A8] transition hover:text-[#25282D]"
+            aria-label="Close notification"
           >
             <X size={16} />
           </button>
-
         </div>
       )}
 
       <div className="w-full max-w-md">
-
         {/* Logo */}
         <div className="mb-8 flex items-center justify-center gap-2">
           <div
-            className={`flex h-10 w-10 items-center justify-center rounded-lg bg-[#C6752B] ${
+            className={`flex h-11 w-11 items-center justify-center rounded-xl bg-[#EF4B4B] text-white shadow-sm ${
               toast ? "animate-bounce" : ""
             }`}
           >
             <Truck size={22} />
           </div>
 
-          <h1 className="text-2xl font-bold">
-            Fleet<span className="text-[#D98A3D]">Flow</span>
+          <h1 className="text-2xl font-bold tracking-tight text-[#25282D]">
+            Fleet<span className="text-[#EF4B4B]">Flow</span>
           </h1>
         </div>
 
         {/* Card */}
-        <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-8 shadow-xl">
-
+        <div className="rounded-2xl border border-[#E8E9ED] bg-white p-8 shadow-sm">
           <div className="mb-8">
-            <h2 className="text-2xl font-bold">
+            <h2 className="text-2xl font-bold text-[#25282D]">
               Welcome back
             </h2>
 
-            <p className="mt-2 text-sm text-zinc-400">
+            <p className="mt-2 text-sm text-[#737780]">
               Sign in to manage your fleet.
             </p>
           </div>
 
           {/* Error */}
           {error && (
-            <div className="mb-5 rounded-lg border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-400">
+            <div className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
-
             {/* Email */}
             <div>
               <label
                 htmlFor="email"
-                className="mb-2 block text-sm font-medium text-zinc-300"
+                className="mb-2 block text-sm font-medium text-[#25282D]"
               >
                 Email
               </label>
@@ -171,7 +165,7 @@ const Login = () => {
                 placeholder="Enter your email"
                 required
                 disabled={loading}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm outline-none transition placeholder:text-zinc-600 focus:border-[#C6752B] disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 text-sm text-[#25282D] outline-none transition placeholder:text-[#A0A3A8] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10 disabled:cursor-not-allowed disabled:bg-[#F5F6F8] disabled:opacity-60"
               />
             </div>
 
@@ -179,7 +173,7 @@ const Login = () => {
             <div>
               <label
                 htmlFor="password"
-                className="mb-2 block text-sm font-medium text-zinc-300"
+                className="mb-2 block text-sm font-medium text-[#25282D]"
               >
                 Password
               </label>
@@ -194,14 +188,14 @@ const Login = () => {
                   placeholder="Enter your password"
                   required
                   disabled={loading}
-                  className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 pr-12 text-sm outline-none transition placeholder:text-zinc-600 focus:border-[#C6752B] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="w-full rounded-lg border border-[#E8E9ED] bg-white px-4 py-3 pr-12 text-sm text-[#25282D] outline-none transition placeholder:text-[#A0A3A8] focus:border-[#EF4B4B] focus:ring-2 focus:ring-[#EF4B4B]/10 disabled:cursor-not-allowed disabled:bg-[#F5F6F8] disabled:opacity-60"
                 />
 
                 <button
                   type="button"
                   disabled={loading}
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 transition hover:text-zinc-300 disabled:cursor-not-allowed"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#A0A3A8] transition hover:text-[#25282D] disabled:cursor-not-allowed"
                   aria-label={
                     showPassword ? "Hide password" : "Show password"
                   }
@@ -219,7 +213,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full items-center justify-center rounded-lg bg-[#C6752B] py-3 font-semibold transition hover:bg-[#A85F20] disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex w-full items-center justify-center rounded-lg bg-[#EF4B4B] py-3 font-semibold text-white transition hover:bg-[#D93B3B] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? (
                 <span className="flex items-center gap-2">
@@ -230,24 +224,20 @@ const Login = () => {
                 "Sign in"
               )}
             </button>
-
           </form>
 
-         
-          <p className="mt-6 text-center text-sm text-zinc-400">
+          {/* Signup */}
+          <p className="mt-6 text-center text-sm text-[#737780]">
             Don't have an account?{" "}
             <Link
               href="/auth/signup"
-              className="font-medium text-[#D98A3D] transition hover:text-[#E8A85C]"
+              className="font-medium text-[#EF4B4B] transition hover:text-[#D93B3B]"
             >
               Create one
             </Link>
           </p>
-
         </div>
-
       </div>
-
     </main>
   )
 }
